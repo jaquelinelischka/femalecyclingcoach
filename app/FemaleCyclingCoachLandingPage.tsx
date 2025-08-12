@@ -75,7 +75,7 @@ export default function FemaleCyclingCoachLandingPage() {
               </p>
               <a
                 href="#kontakt"
-                className="bg-white text-[#1a4b84] py-3 px-8 rounded-full font-semibold hover:bg-gray-100 transition duration-300 inline-block shadow-lg text-lg"
+                className="bg-white text-[#1a4b84] py-1 px-4 rounded-full font-semibold hover:bg-gray-100 transition duration-300 inline-block shadow-lg text-lg"
               >
                 Jetzt starten
               </a>
