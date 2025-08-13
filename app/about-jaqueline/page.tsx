@@ -149,7 +149,7 @@ export default function AboutJaqueline() {
                     Qualifikationen und Expertise im Radsport
                   </h2>
                   <p className="text-gray-700 text-sm sm:text-base leading-relaxed">
-                    Meine Expertise als <strong>Cycling Coach Austria</strong> basiert auf fundierten Ausbildungen in
+                    Meine Expertise als <strong>Cycling Coach</strong> basiert auf fundierten Ausbildungen in
                     Radsport, Trainingssteuerung, Sporternährung und Mental Coaching. Ich betreue Athletinnen vom
                     Anfänger- bis zum ambitionierten Leistungssport-Level und verstehe durch meine eigene
                     Wettkampfpraxis die spezifischen Herausforderungen in Vorbereitung und Wettkampfphase.
@@ -174,7 +174,7 @@ export default function AboutJaqueline() {
                     Spezialisierung: Zyklusgesteuertes Training für Frauen
                   </h2>
                   <p className="text-gray-700 text-sm sm:text-base leading-relaxed">
-                    Als zertifizierte <strong>Radleiterin und Ernährungscoach</strong> biete ich ganzheitliche
+                    Als <strong>Radleiterin und Ernährungscoach</strong> biete ich ganzheitliche
                     Betreuung, die modernste Trainingstechniken – insbesondere{" "}
                     <strong>zyklusgesteuertes Training</strong> – mit individueller Athletenentwicklung verbindet. Diese
                     Kombination aus praktischer Wettkampferfahrung und wissenschaftlich fundiertem Fachwissen ermöglicht
@@ -215,8 +215,8 @@ export default function AboutJaqueline() {
                   Welche Qualifikationen hat Jaqueline als Cycling Coach?
                 </summary>
                 <p className="mt-3 sm:mt-4 text-gray-700 text-sm sm:text-base leading-relaxed">
-                  Jaqueline ist Radleiterin, hat langjährige Erfahrung als Beraterin in der Disziplin Sporternährung und
-                  ist Mental Coach.
+                  Jaqueline hat über 15 Jahre Wettkampferfahrung, Ausbildungen im Bereich Sporternährung und allgemeine Trainingslehre. Sie ist mental Coach, hat langjährige Erfahrung als Beraterin in der Disziplin Sporternährung für Frauen und
+                  ist Rad Coach bei zahlreichen Rad Camps und Übungskursen.
                 </p>
               </details>
 
