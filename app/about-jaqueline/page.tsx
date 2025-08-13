@@ -1,5 +1,6 @@
 import Image from "next/image"
 import type { Metadata } from "next"
+import { ScrollRevealVideo } from "../components/ScrollRevealVideo"
 
 export const metadata: Metadata = {
   title: "About Jaqueline Lischka - Professional Female Cycling Coach Austria",
@@ -90,6 +91,42 @@ export default function AboutJaqueline() {
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 40vw"
                 />
               </div>
+
+              {/* Video Section mit 300px Breite */}
+              <ScrollRevealVideo>
+                <div className="mt-12 sm:mt-16 lg:mt-20 pt-8 sm:pt-12 flex justify-center">
+                  <div className="relative w-[300px]">
+                    <div className="relative overflow-hidden rounded-lg shadow-xl bg-gradient-to-r from-[#191340] to-[#4a6d58] p-1">
+                      <div className="relative overflow-hidden rounded-lg">
+                        <video
+                          className="w-full h-auto object-cover transform hover:scale-105 transition-transform duration-700 ease-in-out"
+                          autoPlay
+                          muted
+                          loop
+                          playsInline
+                          controls
+                          poster="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Frauen%20Coach%20Jaqueline%20Lischka.jpg-unfZ4ZPN46IZIoQNXhCCzsRahJrPHD.jpeg"
+                        >
+                          <source src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/PXL_20250620_152554243.TS-5CqPjKwdY2DYj5lfWjgNLRxyEReZub.mp4" type="video/mp4" />
+                          Ihr Browser unterstützt das Video-Element nicht.
+                        </video>
+
+                        {/* Overlay-Effekt */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#191340]/20 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+
+                        {/* Video-Beschriftung */}
+                        <div className="absolute bottom-2 left-2 right-2 text-white opacity-0 hover:opacity-100 transition-opacity duration-500">
+                          <p className="text-xs font-medium drop-shadow-lg">Jaqueline in Aktion</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Dekorative Elemente */}
+                    <div className="absolute -top-1 -left-1 w-3 h-3 bg-[#4a6d58] rounded-full opacity-60 animate-pulse" />
+                    <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-[#191340] rounded-full opacity-40 animate-pulse delay-1000" />
+                  </div>
+                </div>
+              </ScrollRevealVideo>
             </div>
 
             <div className="order-1 lg:order-2 bg-white/90 p-6 sm:p-8 rounded-lg shadow-md flex flex-col">
@@ -178,7 +215,8 @@ export default function AboutJaqueline() {
                   Welche Qualifikationen hat Jaqueline als Cycling Coach?
                 </summary>
                 <p className="mt-3 sm:mt-4 text-gray-700 text-sm sm:text-base leading-relaxed">
-                  Jaqueline ist Radleiterin, hat langjährige Erfahrung als Beraterin in der Disziplin Sporternährung und ist Mental Coach.
+                  Jaqueline ist Radleiterin, hat langjährige Erfahrung als Beraterin in der Disziplin Sporternährung und
+                  ist Mental Coach.
                 </p>
               </details>
 
