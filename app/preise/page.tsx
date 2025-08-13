@@ -17,11 +17,11 @@ export default function Preise() {
               </li>
               <li className="flex items-start">
                 <CheckCircle className="w-5 h-5 mr-3 text-[#4a6d58] flex-shrink-0 mt-0.5" />
-                <span className="text-sm sm:text-base">Wöchentliches Check-in</span>
+                <span className="text-sm sm:text-base">Monatliches Check-in</span>
               </li>
               <li className="flex items-start">
                 <CheckCircle className="w-5 h-5 mr-3 text-[#4a6d58] flex-shrink-0 mt-0.5" />
-                <span className="text-sm sm:text-base">E-Mail-Support</span>
+                <span className="text-sm sm:text-base">Whatsapp-Support</span>
               </li>
             </ul>
             <p className="text-xl sm:text-2xl font-bold text-[#1a4b84] mb-4 sm:mb-6">€149 / Monat</p>
