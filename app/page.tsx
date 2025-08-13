@@ -32,7 +32,7 @@ export default function Home() {
             </p>
             <Link
               href="/preise"
-              className="bg-white text-[#191340] py-2 sm:py-3 px-3 sm:px-4 rounded-full font-semibold hover:bg-gray-100 transition duration-300 inline-block shadow-lg text-sm sm:text-base min-h-[44px] flex items-center justify-center"
+              className="bg-white text-[#191340] py-3 sm:py-4 px-6 sm:px-8 rounded-full font-semibold hover:bg-gray-100 transition duration-300 shadow-lg text-base sm:text-lg min-h-[44px] inline-flex items-center justify-center"
             >
               Jetzt starten
             </Link>

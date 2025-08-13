@@ -24,7 +24,7 @@ export default function Preise() {
                 <span className="text-sm sm:text-base">E-Mail-Support</span>
               </li>
             </ul>
-            <p className="text-xl sm:text-2xl font-bold text-[#1a4b84] mb-4 sm:mb-6">€125 / Monat</p>
+            <p className="text-xl sm:text-2xl font-bold text-[#1a4b84] mb-4 sm:mb-6">€149 / Monat</p>
             <a
               href="https://calendly.com/femalecyclingcoach/30min"
               target="_blank"
