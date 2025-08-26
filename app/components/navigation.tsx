@@ -66,7 +66,7 @@ export function Navigation() {
     <>
       {/* Desktop Navigation */}
       <nav className="h-full hidden md:block safari-flex-fix">
-        <ul className="flex h-full space-x-8">
+        <ul className="flex h-full space-x-4 lg:space-x-8">
           {navItems.map((item) => (
             <li
               key={item.label}
@@ -77,14 +77,14 @@ export function Navigation() {
               {item.children ? (
                 <div ref={dropdownRef} className="h-full flex items-center safari-flex-fix">
                   <button
-                    className="flex items-center text-lg font-medium text-[#191340] hover:text-[#4a6d58] transition-colors duration-200 ease-in-out py-2 safari-flex-fix"
+                    className="flex items-center text-base lg:text-lg font-medium text-[#191340] hover:text-[#4a6d58] transition-colors duration-200 ease-in-out py-2 safari-flex-fix touch-manipulation"
                     onClick={() => setOpenDropdown(openDropdown === item.label ? null : item.label)}
                     aria-expanded={openDropdown === item.label}
                     aria-haspopup="true"
                     type="button"
                   >
                     {item.label}
-                    <ChevronDown className="ml-1 h-4 w-4" />
+                    <ChevronDown className="ml-1 h-3 w-3 lg:h-4 lg:w-4" />
                   </button>
                   {openDropdown === item.label && (
                     <div
@@ -97,7 +97,7 @@ export function Navigation() {
                           <li key={child.label}>
                             <Link
                               href={child.href}
-                              className="block px-4 py-3 text-sm text-[#191340] hover:bg-gray-100 hover:text-[#4a6d58]"
+                              className="block px-4 py-3 text-sm text-[#191340] hover:bg-gray-100 hover:text-[#4a6d58] touch-manipulation"
                               role="menuitem"
                               onClick={() => setOpenDropdown(null)}
                             >
@@ -112,10 +112,10 @@ export function Navigation() {
               ) : (
                 <Link
                   href={item.href}
-                  className="text-lg font-medium text-[#191340] hover:text-[#4a6d58] transition-colors duration-200 ease-in-out
+                  className="text-base lg:text-lg font-medium text-[#191340] hover:text-[#4a6d58] transition-colors duration-200 ease-in-out
                            relative py-2 after:content-[''] after:absolute after:left-0 after:bottom-0 
                            after:w-0 after:h-0.5 after:bg-[#4a6d58] after:transition-all after:duration-300
-                           hover:after:w-full"
+                           hover:after:w-full touch-manipulation"
                 >
                   {item.label}
                 </Link>
@@ -129,7 +129,7 @@ export function Navigation() {
       <div className="md:hidden flex items-center safari-flex-fix">
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="text-[#191340] p-2 rounded-md hover:bg-gray-100 transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center"
+          className="text-[#191340] p-2 rounded-md hover:bg-gray-100 transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center touch-manipulation"
           aria-expanded={mobileMenuOpen}
           aria-label="Toggle menu"
         >
@@ -140,7 +140,10 @@ export function Navigation() {
         {mobileMenuOpen && (
           <div
             ref={mobileMenuRef}
-            className="absolute top-16 sm:top-20 left-0 right-0 bg-white shadow-lg z-50 border-t border-gray-200 max-h-[calc(100vh-4rem)] overflow-y-auto"
+            className="absolute top-16 sm:top-20 left-0 right-0 bg-white shadow-lg z-50 border-t border-gray-200 max-h-[calc(100vh-4rem)] overflow-y-auto mobile-nav"
+            style={{
+              WebkitOverflowScrolling: "touch",
+            }}
           >
             <ul className="py-2">
               {navItems.map((item) => (
@@ -149,7 +152,7 @@ export function Navigation() {
                     <div>
                       <button
                         onClick={() => setOpenDropdown(openDropdown === item.label ? null : item.label)}
-                        className="flex items-center justify-between w-full py-4 text-[#191340] text-base sm:text-lg min-h-[44px]"
+                        className="flex items-center justify-between w-full py-4 text-[#191340] text-base sm:text-lg min-h-[44px] touch-manipulation"
                         aria-expanded={openDropdown === item.label}
                       >
                         {item.label}
@@ -165,7 +168,7 @@ export function Navigation() {
                             <li key={child.label}>
                               <Link
                                 href={child.href}
-                                className="block py-3 text-[#191340] text-base min-h-[44px] flex items-center"
+                                className="block py-3 text-[#191340] text-base min-h-[44px] flex items-center touch-manipulation"
                                 onClick={() => {
                                   setOpenDropdown(null)
                                   setMobileMenuOpen(false)
@@ -181,7 +184,7 @@ export function Navigation() {
                   ) : (
                     <Link
                       href={item.href}
-                      className="block py-4 text-[#191340] text-base sm:text-lg min-h-[44px] flex items-center"
+                      className="block py-4 text-[#191340] text-base sm:text-lg min-h-[44px] flex items-center touch-manipulation"
                       onClick={() => setMobileMenuOpen(false)}
                     >
                       {item.label}

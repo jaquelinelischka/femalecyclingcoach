@@ -9,140 +9,172 @@
   box-sizing: border-box;
 }
 
-/* Verbesserte Schriftglättung für alle Browser */
+/* Safari iPhone spezifische Optimierungen */
 html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
-  -webkit-text-size-adjust: 100%; /* Verhindert automatische Textvergrößerung in Safari auf iPhone */
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
   scroll-behavior: smooth;
+  /* Safari iPhone Viewport Fix */
+  height: -webkit-fill-available;
 }
 
-/* Verbesserte Bilddarstellung in Firefox */
+body {
+  /* Safari iPhone Viewport Fix */
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+  /* Verhindere horizontales Scrollen auf Safari iPhone */
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Safari iPhone Touch-Optimierungen */
+* {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+}
+
+/* Verbesserte Bilddarstellung für Safari iPhone */
 img {
+  -webkit-user-select: none;
   -moz-user-select: none;
+  user-select: none;
   max-width: 100%;
   height: auto;
+  /* Safari iPhone Bildoptimierung */
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
-/* Safari-spezifische Anpassungen */
+/* Safari spezifische Anpassungen */
 @supports (-webkit-touch-callout: none) {
-  /* CSS für Safari */
   .safari-flex-fix {
     display: -webkit-box;
     display: -webkit-flex;
     display: flex;
   }
 
-  /* Safari-spezifische Backdrop-Filter-Unterstützung */
+  /* Safari Backdrop-Filter */
   .backdrop-blur-sm {
     -webkit-backdrop-filter: blur(4px);
     backdrop-filter: blur(4px);
   }
 
-  /* Fix für sticky-Positionierung in Safari */
+  /* Safari Sticky Fix */
   .sticky {
     position: -webkit-sticky;
     position: sticky;
   }
-}
 
-/* Verbesserte Dropdown-Darstellung in Firefox */
-@-moz-document url-prefix() {\
-  select {
-    text-indent: 0.01px;
-    text-overflow: '';
+  /* Safari iPhone Video-Optimierung */
+  video {
+    -webkit-playsinline: true;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
   }
 }
 
-/* Verbesserte Scrollbar-Darstellung für Chrome und Firefox */
-* {
-  scrollbar-width: thin;
-  scrollbar-color: rgba(155, 155, 155, 0.5) transparent;
+/* iPhone Safari Viewport Units Fix */
+.min-h-screen {
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
 }
 
-*::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+.h-screen {
+  height: 100vh;
+  height: -webkit-fill-available;
 }
 
-*::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-*::-webkit-scrollbar-thumb {
-  background-color: rgba(155, 155, 155, 0.5);
-  border-radius: 20px;
-  border: transparent;
-}
-
-/* Verbesserte Fokus-Stile für Barrierefreiheit in allen Browsern */
-:focus {
-  outline: 2px solid #191340;
-  outline-offset: 2px;
-}
-
-/* Verbesserte Darstellung von Formularelementen in Firefox */
+/* Safari iPhone Button-Optimierung */
 button,
 input,
 select,
 textarea {
   font-family: inherit;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: 0;
 }
 
-/* Mobile Optimierungen */
-@media (max-width: 640px) {
-  /* Größere Touch-Targets auf mobilen Geräten */
+/* Safari iPhone Link-Optimierung */
+a {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+/* Mobile-First Responsive Design */
+@media (max-width: 480px) {
+  /* iPhone SE und kleinere Geräte */
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  /* Größere Touch-Targets für iPhone */
   button,
-  a {
+  a,
+  [role="button"] {
     min-height: 44px;
     min-width: 44px;
   }
 
-  /* Verbesserte Lesbarkeit auf kleinen Bildschirmen */
+  /* iPhone Text-Optimierung */
   p,
   li {
     font-size: 16px;
     line-height: 1.6;
   }
 
-  /* Verhindere horizontales Scrollen */
-  body {
-    overflow-x: hidden;
-  }
-
-  /* Verbesserte Darstellung von Containern auf mobilen Geräten */
-  .container {
-    padding-left: 1rem;
-    padding-right: 1rem;
+  /* iPhone Navigation Fix */
+  .mobile-nav {
+    -webkit-overflow-scrolling: touch;
   }
 }
 
-/* Tablet Optimierungen */
-@media (min-width: 641px) and (max-width: 1024px) {
+@media (min-width: 481px) and (max-width: 768px) {
+  /* iPhone Plus, iPhone Pro, iPad Mini */
+  .container {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  /* iPad, iPad Pro */
   .container {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
   }
 }
 
-/* Desktop Optimierungen */
 @media (min-width: 1025px) {
+  /* Desktop */
   .container {
     padding-left: 2rem;
     padding-right: 2rem;
   }
 }
 
-/* Verbesserte Hover-Effekte nur auf Desktop */
-@media (hover: hover) {
-  button:hover,
-  a:hover {
-    transition: all 0.2s ease-in-out;
-  }
+/* Safari iPhone Scrollbar-Optimierung */
+* {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
-/* Verbesserte Performance für Animationen */
+*::-webkit-scrollbar {
+  display: none;
+}
+
+/* Safari iPhone Fokus-Optimierung */
+:focus {
+  outline: 2px solid #191340;
+  outline-offset: 2px;
+}
+
+/* Safari iPhone Animation-Optimierung */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -154,10 +186,37 @@ textarea {
   }
 }
 
-/* Verbesserte Darstellung für hohe DPI-Displays */
+/* Safari iPhone Hover-Optimierung */
+@media (hover: hover) and (pointer: fine) {
+  button:hover,
+  a:hover {
+    transition: all 0.2s ease-in-out;
+  }
+}
+
+/* Safari iPhone Retina-Optimierung */
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   img {
     image-rendering: -webkit-optimize-contrast;
     image-rendering: crisp-edges;
   }
+}
+
+/* Safari iPhone Fixed Background Fix */
+.fixed-bg {
+  background-attachment: scroll !important;
+}
+
+@media (min-width: 768px) {
+  .fixed-bg {
+    background-attachment: fixed;
+  }
+}
+
+/* Safari iPhone Video Container Fix */
+.video-container {
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
