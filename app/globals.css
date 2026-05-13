@@ -18,21 +18,32 @@ html {
   -ms-text-size-adjust: 100%;
   scroll-behavior: smooth;
   /* Safari iPhone Viewport Fix */
-  height: -webkit-fill-available;
+  height: 100%;
+  min-height: 100%;
+  min-height: -webkit-fill-available;
 }
 
 body {
   /* Safari iPhone Viewport Fix */
+  min-height: 100%;
   min-height: 100vh;
   min-height: -webkit-fill-available;
   /* Verhindere horizontales Scrollen auf Safari iPhone */
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
+  /* Flexbox für Footer-Positionierung */
+  display: flex;
+  flex-direction: column;
 }
 
 /* Safari iPhone Touch-Optimierungen */
 * {
   -webkit-tap-highlight-color: transparent;
+}
+
+/* Selektiv Touch-Callout deaktivieren */
+img,
+video {
   -webkit-touch-callout: none;
 }
 
@@ -79,12 +90,28 @@ img {
 /* iPhone Safari Viewport Units Fix */
 .min-h-screen {
   min-height: 100vh;
+  min-height: 100dvh;
   min-height: -webkit-fill-available;
 }
 
 .h-screen {
   height: 100vh;
+  height: 100dvh;
   height: -webkit-fill-available;
+}
+
+/* Safe Area Insets für iPhone Notch */
+.safe-area-inset {
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
+
+.safe-area-inset-top {
+  padding-top: env(safe-area-inset-top);
+}
+
+.safe-area-inset-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
 }
 
 /* Safari iPhone Button-Optimierung */
@@ -93,6 +120,7 @@ input,
 select,
 textarea {
   font-family: inherit;
+  font-size: 16px; /* Verhindert Auto-Zoom auf iPhone */
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -111,6 +139,8 @@ a {
   .container {
     padding-left: 1rem;
     padding-right: 1rem;
+    width: 100%;
+    max-width: 100%;
   }
 
   /* Größere Touch-Targets für iPhone */
@@ -118,7 +148,6 @@ a {
   a,
   [role="button"] {
     min-height: 44px;
-    min-width: 44px;
   }
 
   /* iPhone Text-Optimierung */
@@ -131,6 +160,7 @@ a {
   /* iPhone Navigation Fix */
   .mobile-nav {
     -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
   }
 }
 
@@ -170,6 +200,15 @@ a {
 
 /* Safari iPhone Fokus-Optimierung */
 :focus {
+  outline: 2px solid #191340;
+  outline-offset: 2px;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+:focus-visible {
   outline: 2px solid #191340;
   outline-offset: 2px;
 }
@@ -219,4 +258,32 @@ a {
   transform: translateZ(0);
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
+}
+
+/* Custom heights for consistency */
+@layer utilities {
+  .h-18 {
+    height: 4.5rem;
+  }
+  .pt-18 {
+    padding-top: 4.5rem;
+  }
+  .top-18 {
+    top: 4.5rem;
+  }
+  .sm\:h-18 {
+    @media (min-width: 640px) {
+      height: 4.5rem;
+    }
+  }
+  .sm\:pt-18 {
+    @media (min-width: 640px) {
+      padding-top: 4.5rem;
+    }
+  }
+  .sm\:top-18 {
+    @media (min-width: 640px) {
+      top: 4.5rem;
+    }
+  }
 }

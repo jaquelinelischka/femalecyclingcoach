@@ -5,7 +5,7 @@ export default function Leistungen() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <div className="relative h-[40vh] sm:h-[50vh] md:h-[60vh] lg:h-[70vh] overflow-hidden">
+      <div className="relative h-[35vh] sm:h-[45vh] md:h-[55vh] lg:h-[65vh] min-h-[250px] overflow-hidden">
         <Image
           src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/354020941.JPG-cUoM2yyZRgHBmL9RzupWsQAKKbgwCd.jpeg"
           alt="Radsportlerin meistert technisch anspruchsvolle Passage"
@@ -13,6 +13,11 @@ export default function Leistungen() {
           className="object-cover"
           priority
           sizes="100vw"
+          style={{
+            transform: "translateZ(0)",
+            WebkitBackfaceVisibility: "hidden",
+            backfaceVisibility: "hidden",
+          }}
         />
         <div className="absolute inset-0 bg-[#1a4b84]/30" />
         <div className="absolute inset-0 flex items-center justify-center px-4">

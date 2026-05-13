@@ -138,13 +138,20 @@ export function Navigation() {
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <div
-            ref={mobileMenuRef}
-            className="absolute top-16 sm:top-20 left-0 right-0 bg-white shadow-lg z-50 border-t border-gray-200 max-h-[calc(100vh-4rem)] overflow-y-auto mobile-nav"
-            style={{
-              WebkitOverflowScrolling: "touch",
-            }}
-          >
+          <>
+            {/* Backdrop */}
+            <div 
+              className="fixed inset-0 bg-black/20 z-40"
+              onClick={() => setMobileMenuOpen(false)}
+              aria-hidden="true"
+            />
+            <div
+              ref={mobileMenuRef}
+              className="fixed top-16 left-0 right-0 bg-white shadow-lg z-50 border-t border-gray-200 max-h-[calc(100vh-4rem)] max-h-[calc(100dvh-4rem)] overflow-y-auto mobile-nav overscroll-contain"
+              style={{
+                WebkitOverflowScrolling: "touch",
+              }}
+            >
             <ul className="py-2">
               {navItems.map((item) => (
                 <li key={item.label} className="px-4 sm:px-6">
@@ -194,6 +201,7 @@ export function Navigation() {
               ))}
             </ul>
           </div>
+          </>
         )}
       </div>
     </>
