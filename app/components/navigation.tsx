@@ -59,6 +59,7 @@ export function Navigation() {
         { label: "FAQ", href: "/faq" },
       ],
     },
+    { label: "Stories", href: "/stories" },
     { label: "Kontakt", href: "/kontakt" },
   ]
 
