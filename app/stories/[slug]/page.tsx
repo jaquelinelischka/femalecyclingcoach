@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowLeft, Clock, Calendar, Heart, Share2 } from "lucide-react"
+import { ArrowLeft, Clock, Calendar } from "lucide-react"
 import { notFound } from "next/navigation"
 
 interface StoryData {
@@ -12,6 +12,7 @@ interface StoryData {
   author: string
   date: string
   readingTime: string
+  category: string
   content: {
     type: "paragraph" | "heading" | "image"
     text?: string
@@ -28,7 +29,8 @@ const storiesData: Record<string, StoryData> = {
     image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Bildschirmfoto%202026-05-13%20um%2015.33.53-ZxLEb2vddIUTtM0xC5zz2RTtXRhlAz.png",
     author: "Jaqueline Lischka",
     date: "6. Februar 2026",
-    readingTime: "8 Min. Lesezeit",
+    readingTime: "8 Min.",
+    category: "Rennerlebnis",
     content: [
       {
         type: "paragraph",
@@ -166,7 +168,7 @@ export default async function StoryPage({ params }: Props) {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Image */}
-      <div className="relative h-[50vh] sm:h-[60vh] md:h-[70vh] min-h-[350px] overflow-hidden">
+      <div className="relative h-[45vh] sm:h-[55vh] md:h-[65vh] min-h-[320px] overflow-hidden">
         <Image
           src={story.image}
           alt={story.title}
@@ -180,24 +182,31 @@ export default async function StoryPage({ params }: Props) {
             backfaceVisibility: "hidden",
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#191340] via-[#191340]/40 to-transparent" />
 
         {/* Back Button */}
         <Link
           href="/stories"
-          className="absolute top-4 sm:top-6 left-4 sm:left-6 flex items-center gap-2 text-white bg-black/30 backdrop-blur-sm px-4 py-2 rounded-full hover:bg-black/50 transition-colors"
+          className="absolute top-4 sm:top-6 left-4 sm:left-6 flex items-center gap-2 text-white bg-white/10 backdrop-blur-md px-4 py-2.5 rounded-full hover:bg-white/20 transition-colors border border-white/20"
         >
           <ArrowLeft className="w-4 h-4" />
-          <span className="text-sm font-medium">Zurück zu Stories</span>
+          <span className="text-sm font-medium">Stories</span>
         </Link>
 
+        {/* Category Badge */}
+        <div className="absolute top-4 sm:top-6 right-4 sm:right-6">
+          <span className="inline-block bg-[#4a6d58] text-white text-xs sm:text-sm font-medium px-3 py-1.5 rounded-full">
+            {story.category}
+          </span>
+        </div>
+
         {/* Title Overlay */}
-        <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8 lg:p-12">
+        <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-8 lg:p-12">
           <div className="container mx-auto max-w-4xl">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 text-balance">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-3 text-balance leading-tight">
               {story.title}
             </h1>
-            <p className="text-lg sm:text-xl text-white/90 max-w-2xl text-pretty">
+            <p className="text-base sm:text-lg md:text-xl text-white/80 max-w-2xl text-pretty">
               {story.subtitle}
             </p>
           </div>
@@ -207,52 +216,44 @@ export default async function StoryPage({ params }: Props) {
       {/* Article Content */}
       <article className="py-8 sm:py-12 lg:py-16 px-4 sm:px-6 lg:px-8">
         <div className="container mx-auto max-w-3xl">
-          {/* Author Info */}
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-8 border-b border-gray-200 mb-8">
+          {/* Author Info Bar */}
+          <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 pb-8 border-b border-gray-200 mb-10">
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-full bg-[#191340] flex items-center justify-center">
-                <span className="text-white font-semibold">JL</span>
-              </div>
-              <div>
-                <p className="font-medium text-[#191340]">{story.author}</p>
-                <div className="flex items-center gap-3 text-sm text-gray-500">
-                  <span className="flex items-center gap-1">
-                    <Calendar className="w-4 h-4" />
-                    {story.date}
-                  </span>
-                  <span className="flex items-center gap-1">
-                    <Clock className="w-4 h-4" />
-                    {story.readingTime}
-                  </span>
+              {/* Author Avatar with Gradient Border */}
+              <div className="relative">
+                <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#4a6d58] to-[#191340] p-0.5">
+                  <div className="w-full h-full rounded-full bg-[#191340] flex items-center justify-center">
+                    <span className="text-white font-bold text-lg">JL</span>
+                  </div>
                 </div>
               </div>
+              <div>
+                <p className="font-semibold text-[#191340] text-lg">{story.author}</p>
+                <p className="text-sm text-gray-500">Female Cycling Coach</p>
+              </div>
             </div>
-            <div className="flex items-center gap-3">
-              <button
-                className="flex items-center gap-2 px-4 py-2 rounded-full border border-gray-200 hover:bg-gray-50 transition-colors text-sm text-gray-600"
-                aria-label="Story teilen"
-              >
-                <Share2 className="w-4 h-4" />
-                Teilen
-              </button>
-              <button
-                className="flex items-center gap-2 px-4 py-2 rounded-full border border-gray-200 hover:bg-rose-50 hover:border-rose-200 transition-colors text-sm text-gray-600 hover:text-rose-500"
-                aria-label="Story liken"
-              >
-                <Heart className="w-4 h-4" />
-                Gefällt mir
-              </button>
+            
+            <div className="sm:ml-auto flex items-center gap-4 text-sm text-gray-500">
+              <span className="flex items-center gap-1.5">
+                <Calendar className="w-4 h-4 text-[#4a6d58]" />
+                {story.date}
+              </span>
+              <span className="w-1 h-1 rounded-full bg-gray-300" />
+              <span className="flex items-center gap-1.5">
+                <Clock className="w-4 h-4 text-[#4a6d58]" />
+                {story.readingTime} Lesezeit
+              </span>
             </div>
           </div>
 
           {/* Content */}
-          <div className="prose prose-lg prose-gray max-w-none">
+          <div className="space-y-6">
             {story.content.map((block, index) => {
               if (block.type === "heading") {
                 return (
                   <h2
                     key={index}
-                    className="text-2xl sm:text-3xl font-bold text-[#191340] mt-12 mb-6"
+                    className="text-2xl sm:text-3xl font-bold text-[#191340] mt-10 mb-4 relative pl-4 border-l-4 border-[#4a6d58]"
                   >
                     {block.text}
                   </h2>
@@ -262,7 +263,7 @@ export default async function StoryPage({ params }: Props) {
                 return (
                   <p
                     key={index}
-                    className="text-gray-700 leading-relaxed mb-6 text-base sm:text-lg"
+                    className="text-gray-700 leading-relaxed text-base sm:text-lg"
                   >
                     {block.text}
                   </p>
@@ -270,30 +271,44 @@ export default async function StoryPage({ params }: Props) {
               }
               if (block.type === "image" && block.src) {
                 return (
-                  <div key={index} className="my-8 rounded-xl overflow-hidden">
-                    <Image
-                      src={block.src}
-                      alt={block.alt || ""}
-                      width={800}
-                      height={500}
-                      className="w-full object-cover"
-                    />
-                  </div>
+                  <figure key={index} className="my-10">
+                    <div className="rounded-xl overflow-hidden">
+                      <Image
+                        src={block.src}
+                        alt={block.alt || ""}
+                        width={800}
+                        height={500}
+                        className="w-full object-cover"
+                      />
+                    </div>
+                    {block.alt && (
+                      <figcaption className="text-sm text-gray-500 mt-3 text-center">
+                        {block.alt}
+                      </figcaption>
+                    )}
+                  </figure>
                 )
               }
               return null
             })}
           </div>
 
-          {/* Back to Stories */}
-          <div className="mt-12 pt-8 border-t border-gray-200">
-            <Link
-              href="/stories"
-              className="inline-flex items-center gap-2 text-[#4a6d58] hover:text-[#3a5d48] font-medium transition-colors"
-            >
-              <ArrowLeft className="w-5 h-5" />
-              Zurück zu allen Stories
-            </Link>
+          {/* Article Footer */}
+          <div className="mt-14 pt-8 border-t border-gray-200">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+              <Link
+                href="/stories"
+                className="inline-flex items-center gap-2 text-[#4a6d58] hover:text-[#3a5d48] font-semibold transition-colors group"
+              >
+                <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
+                Alle Stories entdecken
+              </Link>
+              
+              <div className="flex items-center gap-3 text-sm text-gray-500">
+                <span>Geschrieben von</span>
+                <span className="font-medium text-[#191340]">{story.author}</span>
+              </div>
+            </div>
           </div>
         </div>
       </article>

@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
-import { Heart, Eye, Clock, ChevronRight } from "lucide-react"
+import { Clock, ChevronRight, BookOpen } from "lucide-react"
 
 export const metadata: Metadata = {
   title: "Stories | Female Cycling Coach",
@@ -17,10 +17,10 @@ interface Story {
   excerpt: string
   image: string
   author: string
+  authorImage?: string
   date: string
   readingTime: string
-  views: number
-  likes: number
+  category: string
 }
 
 const stories: Story[] = [
@@ -30,18 +30,17 @@ const stories: Story[] = [
     excerpt: "Es gibt Rennen, die fühlen sich an wie Sport. Und dann gibt es das Atlas Mountain Race. Das fühlt sich an wie ein anderes Leben, das du dir für acht Tage ausleihst...",
     image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Bildschirmfoto%202026-05-13%20um%2015.33.53-ZxLEb2vddIUTtM0xC5zz2RTtXRhlAz.png",
     author: "Jaqueline Lischka",
-    date: "6. Feb. 2026",
-    readingTime: "8 Min. Lesezeit",
-    views: 3319,
-    likes: 7,
+    date: "6. Februar 2026",
+    readingTime: "8 Min.",
+    category: "Rennerlebnis",
   },
 ]
 
 export default function StoriesPage() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-[#fafafa]">
       {/* Hero Section */}
-      <div className="relative h-[30vh] sm:h-[40vh] md:h-[50vh] min-h-[200px] overflow-hidden">
+      <div className="relative h-[35vh] sm:h-[45vh] md:h-[50vh] min-h-[280px] overflow-hidden">
         <Image
           src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/354020941.JPG-cUoM2yyZRgHBmL9RzupWsQAKKbgwCd.jpeg"
           alt="Radfahrerin in den Bergen"
@@ -55,86 +54,89 @@ export default function StoriesPage() {
             backfaceVisibility: "hidden",
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#191340]/80 via-[#191340]/40 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#191340]/90 via-[#191340]/50 to-[#191340]/20" />
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="text-center px-4">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 text-balance">
+            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full mb-6">
+              <BookOpen className="w-4 h-4 text-white" />
+              <span className="text-sm text-white font-medium">Athletinnen-Geschichten</span>
+            </div>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-4 text-balance">
               Stories
             </h1>
-            <p className="text-base sm:text-lg md:text-xl text-white/90 max-w-2xl mx-auto text-pretty">
-              Spannende Geschichten und unvergessliche Momente unserer Athletinnen
+            <p className="text-base sm:text-lg md:text-xl text-white/80 max-w-2xl mx-auto text-pretty">
+              Echte Erlebnisse, echte Emotionen, echte Abenteuer
             </p>
           </div>
         </div>
       </div>
 
-      {/* Stories Grid */}
+      {/* Stories Section */}
       <section className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8">
         <div className="container mx-auto max-w-6xl">
-          <div className="space-y-8 sm:space-y-12">
+          {/* Section Header */}
+          <div className="mb-10 sm:mb-12">
+            <h2 className="text-sm font-semibold text-[#4a6d58] uppercase tracking-wider mb-2">
+              Neueste Geschichten
+            </h2>
+            <div className="w-12 h-1 bg-[#4a6d58] rounded-full" />
+          </div>
+
+          {/* Stories Grid */}
+          <div className="space-y-8 sm:space-y-10">
             {stories.map((story) => (
               <article key={story.slug} className="group">
                 <Link href={`/stories/${story.slug}`} className="block">
-                  <div className="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+                  <div className="bg-white rounded-xl sm:rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-100">
                     <div className="flex flex-col lg:flex-row">
-                      {/* Image */}
-                      <div className="relative w-full lg:w-1/2 aspect-[4/3] lg:aspect-auto lg:min-h-[400px] overflow-hidden">
+                      {/* Image Container */}
+                      <div className="relative w-full lg:w-[55%] aspect-[16/10] lg:aspect-auto lg:min-h-[420px] overflow-hidden">
                         <Image
                           src={story.image}
                           alt={story.title}
                           fill
-                          className="object-cover group-hover:scale-105 transition-transform duration-500"
-                          sizes="(max-width: 1024px) 100vw, 50vw"
+                          className="object-cover group-hover:scale-[1.02] transition-transform duration-700 ease-out"
+                          sizes="(max-width: 1024px) 100vw, 55vw"
                         />
+                        {/* Category Badge */}
+                        <div className="absolute top-4 left-4 sm:top-6 sm:left-6">
+                          <span className="inline-block bg-[#191340] text-white text-xs sm:text-sm font-medium px-3 py-1.5 rounded-full">
+                            {story.category}
+                          </span>
+                        </div>
                       </div>
 
-                      {/* Content */}
-                      <div className="flex flex-col justify-between p-6 sm:p-8 lg:p-10 lg:w-1/2">
+                      {/* Content Container */}
+                      <div className="flex flex-col justify-between p-5 sm:p-8 lg:p-10 lg:w-[45%]">
                         <div>
-                          {/* Author & Meta */}
-                          <div className="flex items-center gap-3 mb-4">
-                            <div className="w-10 h-10 rounded-full bg-[#191340] flex items-center justify-center">
-                              <span className="text-white text-sm font-semibold">JL</span>
-                            </div>
-                            <div>
-                              <p className="text-sm font-medium text-[#191340]">{story.author}</p>
-                              <div className="flex items-center gap-2 text-xs text-gray-500">
-                                <span>{story.date}</span>
-                                <span className="w-1 h-1 rounded-full bg-gray-400" />
-                                <span className="flex items-center gap-1">
-                                  <Clock className="w-3 h-3" />
-                                  {story.readingTime}
-                                </span>
-                              </div>
-                            </div>
+                          {/* Meta Info */}
+                          <div className="flex items-center gap-4 mb-5 text-sm text-gray-500">
+                            <span className="font-medium text-[#191340]">{story.author}</span>
+                            <span className="w-1 h-1 rounded-full bg-gray-300" />
+                            <span>{story.date}</span>
                           </div>
 
                           {/* Title */}
-                          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#191340] mb-4 group-hover:text-[#4a6d58] transition-colors text-balance">
+                          <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#191340] mb-4 group-hover:text-[#4a6d58] transition-colors duration-300 text-balance leading-tight">
                             {story.title}
-                          </h2>
+                          </h3>
 
                           {/* Excerpt */}
-                          <p className="text-gray-600 text-base sm:text-lg leading-relaxed mb-6 text-pretty">
+                          <p className="text-gray-600 text-base sm:text-lg leading-relaxed mb-6 text-pretty line-clamp-3">
                             {story.excerpt}
                           </p>
-
-                          {/* Read More */}
-                          <div className="flex items-center text-[#4a6d58] font-medium group-hover:gap-2 transition-all">
-                            <span>Weiterlesen</span>
-                            <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                          </div>
                         </div>
 
-                        {/* Footer Stats */}
-                        <div className="flex items-center justify-between pt-6 mt-6 border-t border-gray-100">
-                          <div className="flex items-center gap-1.5 text-gray-500 text-sm">
-                            <Eye className="w-4 h-4" />
-                            <span>{story.views.toLocaleString("de-DE")} Ansichten</span>
+                        {/* Footer */}
+                        <div className="flex items-center justify-between pt-5 border-t border-gray-100">
+                          <div className="flex items-center gap-2 text-gray-500 text-sm">
+                            <Clock className="w-4 h-4" />
+                            <span>{story.readingTime} Lesezeit</span>
                           </div>
-                          <div className="flex items-center gap-1.5 text-gray-500 text-sm">
-                            <span>{story.likes}</span>
-                            <Heart className="w-4 h-4 text-rose-400" />
+                          
+                          <div className="flex items-center gap-1.5 text-[#4a6d58] font-semibold text-sm group-hover:gap-3 transition-all duration-300">
+                            <span>Weiterlesen</span>
+                            <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
                           </div>
                         </div>
                       </div>
@@ -145,12 +147,25 @@ export default function StoriesPage() {
             ))}
           </div>
 
-          {/* Empty State for future */}
+          {/* Empty State */}
           {stories.length === 0 && (
-            <div className="text-center py-16">
+            <div className="text-center py-20">
+              <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <BookOpen className="w-8 h-8 text-gray-400" />
+              </div>
               <p className="text-gray-500 text-lg">Noch keine Stories vorhanden.</p>
             </div>
           )}
+
+          {/* Coming Soon Teaser */}
+          <div className="mt-16 sm:mt-20 p-8 sm:p-12 bg-[#191340] rounded-xl sm:rounded-2xl text-center">
+            <h3 className="text-xl sm:text-2xl font-bold text-white mb-3">
+              Mehr Stories kommen bald
+            </h3>
+            <p className="text-white/70 max-w-lg mx-auto">
+              Folge uns, um keine Geschichte zu verpassen. Jede Athletin hat ihre eigene, einzigartige Reise zu erzählen.
+            </p>
+          </div>
         </div>
       </section>
     </div>
