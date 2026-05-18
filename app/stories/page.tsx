@@ -28,7 +28,7 @@ const stories: Story[] = [
     slug: "atlas-mountain-race-2026",
     title: "Atlas Mountain Race 2026",
     excerpt: "Es gibt Rennen, die fühlen sich an wie Sport. Und dann gibt es das Atlas Mountain Race. Das fühlt sich an wie ein anderes Leben, das du dir für acht Tage ausleihst...",
-    image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Bildschirmfoto%202026-05-13%20um%2015.33.53-ZxLEb2vddIUTtM0xC5zz2RTtXRhlAz.png",
+    image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_2855-HMBNkeBsarCMy3SSJd3JQDWCyGA4DC.jpeg",
     author: "Jaqueline Lischka",
     date: "6. Februar 2026",
     readingTime: "8 Min.",
