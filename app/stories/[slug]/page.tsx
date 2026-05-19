@@ -26,7 +26,7 @@ const storiesData: Record<string, StoryData> = {
     slug: "atlas-mountain-race-2026",
     title: "Atlas Mountain Race 2026",
     subtitle: "1.400km, 25.000 Höhenmeter, kein Support - Eine Reise durch Marokko",
-    image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/AMR_4410-1HDCxDhVTW5mKDXOEwcwiwtd9FvVTo.jpeg",
+    image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/AMR_3421-wJBsuF1RD8vyj3HXTqlzJCxzt6SGcp.jpeg",
     author: "Jaqueline Lischka",
     date: "6. Februar 2026",
     readingTime: "8 Min.",
