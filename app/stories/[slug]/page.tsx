@@ -25,7 +25,7 @@ const storiesData: Record<string, StoryData> = {
   "atlas-mountain-race-2026": {
     slug: "atlas-mountain-race-2026",
     title: "Atlas Mountain Race 2026",
-    subtitle: "1.400km, 25.000 Höhenmeter, kein Support - Eine Reise durch Marokko",
+    subtitle: "Die härteste Edition die Marokko und das AMR je gesehen haben: 1.400km, 25.000 Höhenmeter, kein Support - Eine Reise durch die Wüste.",
     image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/AMR_3421-wJBsuF1RD8vyj3HXTqlzJCxzt6SGcp.jpeg",
     author: "Jaqueline Lischka",
     date: "6. Februar 2026",
@@ -61,6 +61,11 @@ const storiesData: Record<string, StoryData> = {
         text: "Und dann, nach langen Stunden in der Dunkelheit, geht die Sonne über dem Hohen Atlas auf und wirft ihr Licht über ein endloses Panorama aus Bergkämmen und Tälern. Die Kälte tritt in den Hintergrund, das Eis, das Unbehagen, die Müdigkeit. All das wird auf einmal nebensächlich. Was bleibt, ist die schiere Weite. Roh, gewaltig und beinahe unwirklich.",
       },
       {
+        type: "image",
+        src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/AMR_2742-c7cXFmSUHkHw8cRaOWFxA5coVfvVGh.jpeg",
+        alt: "Jaqueline auf dem Bike in der verschneiten Berglandschaft des Atlas bei Sonnenaufgang",
+      },
+      {
         type: "heading",
         text: "In der Wüste",
       },
@@ -75,6 +80,16 @@ const storiesData: Record<string, StoryData> = {
       {
         type: "paragraph",
         text: "Genau solche Momente sind es, die Marokko zu etwas Besonderem machen – diese Weite, diese Stille, diese Bilder, die einen vergessen lassen, in welcher Welt man eigentlich unterwegs ist.",
+      },
+      {
+        type: "image",
+        src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/AMR_23-U3x1NI6lidA0XT8O8p1lRDBFjy07oS.jpeg",
+        alt: "Traditionelle Olivenpresse in Marokko - ein Einblick in das lokale Leben",
+      },
+      {
+        type: "image",
+        src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_2891-fhzcIL1vaUwN89vYPWljZW6BqCt08n.jpeg",
+        alt: "Frische Orangen auf einem marokkanischen Markt - Energiequelle während des Rennens",
       },
       {
         type: "heading",
@@ -99,6 +114,11 @@ const storiesData: Record<string, StoryData> = {
       {
         type: "paragraph",
         text: "Kurze Zeit später liegen wir im Bett eines Hotels und sind einfach nur dankbar über die unglaubliche Herzlichkeit und Hilfsbereitschaft der Marokkaner, die uns in dieser Nacht geholfen haben.",
+      },
+      {
+        type: "image",
+        src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/AMR_2729-S86feIYlhxvbzKZBZP44OfvXzybWVa.jpeg",
+        alt: "Fahren im dichten Nebel - wenn die Sicht auf wenige Meter beschränkt ist",
       },
       {
         type: "heading",
@@ -127,6 +147,16 @@ const storiesData: Record<string, StoryData> = {
       {
         type: "paragraph",
         text: "Das Atlas Mountain Race hat mehr von uns verlangt als wir erwartet haben. Aber Marokko hat uns so viel zurückgegeben. Mehr als ein Rennen, mehr als Kilometer. Und eines ist klar: wir kommen wieder.",
+      },
+      {
+        type: "image",
+        src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/AMR_2937-smyIbLATTLCino47WSXceGZx0grXsS.jpeg",
+        alt: "Ankunft in einem traditionellen marokkanischen Riad - verdiente Erholung",
+      },
+      {
+        type: "image",
+        src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_4530-LKef5CIZnpkA8NJ6awwGOGboxTPUQD.jpeg",
+        alt: "Marokkanische Kunst - ein Bild, das die Kultur des Landes einfängt",
       },
     ],
   },
