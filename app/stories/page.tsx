@@ -39,25 +39,27 @@ const stories: Story[] = [
 export default function StoriesPage() {
   return (
     <div className="min-h-screen bg-[#fafafa]">
-      {/* Hero Section */}
-      <div className="relative h-[35vh] sm:h-[45vh] md:h-[50vh] min-h-[280px] overflow-hidden">
-        <Image
-          src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/354020941.JPG-cUoM2yyZRgHBmL9RzupWsQAKKbgwCd.jpeg"
-          alt="Radfahrerin in den Bergen"
-          fill
-          className="object-cover"
-          priority
-          sizes="100vw"
-          style={{
-            transform: "translateZ(0)",
-            WebkitBackfaceVisibility: "hidden",
-            backfaceVisibility: "hidden",
-          }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#191340]/90 via-[#191340]/50 to-[#191340]/20" />
+      {/* Hero Section with Animated Background */}
+      <div className="relative h-[35vh] sm:h-[45vh] md:h-[50vh] min-h-[280px] overflow-hidden bg-[#191340]">
+        {/* Animated gradient background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#191340] via-[#2a2460] to-[#191340] animate-gradient-shift" />
+        
+        {/* Animated shapes */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute -top-20 -left-20 w-72 h-72 bg-[#4a6d58]/20 rounded-full blur-3xl animate-float-slow" />
+          <div className="absolute top-1/2 -right-20 w-96 h-96 bg-[#4a6d58]/15 rounded-full blur-3xl animate-float-medium" />
+          <div className="absolute -bottom-20 left-1/3 w-80 h-80 bg-[#3d5a4a]/20 rounded-full blur-3xl animate-float-fast" />
+        </div>
+        
+        {/* Subtle grid pattern overlay */}
+        <div className="absolute inset-0 opacity-[0.03]" style={{
+          backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
+          backgroundSize: '50px 50px'
+        }} />
+        
         <div className="absolute inset-0 flex items-center justify-center">
-          <div className="text-center px-4">
-            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full mb-6">
+          <div className="text-center px-4 relative z-10">
+            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full mb-6 border border-white/10">
               <BookOpen className="w-4 h-4 text-white" />
               <span className="text-sm text-white font-medium">Athletinnen-Geschichten</span>
             </div>
