@@ -198,12 +198,12 @@ export default async function StoryPage({ params }: Props) {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Image */}
-      <div className="relative h-[45vh] sm:h-[55vh] md:h-[65vh] min-h-[320px] overflow-hidden">
+      <div className="relative h-[35vh] sm:h-[40vh] md:h-[45vh] min-h-[280px] max-h-[400px] overflow-hidden">
         <Image
           src={story.image}
           alt={story.title}
           fill
-          className="object-cover"
+          className="object-cover object-center"
           priority
           sizes="100vw"
           style={{
@@ -302,15 +302,22 @@ export default async function StoryPage({ params }: Props) {
               if (block.type === "image" && block.src) {
                 return (
                   <figure key={index} className="my-8">
-                    <div className="w-full rounded-lg overflow-hidden shadow-md">
-                      <Image
-                        src={block.src}
-                        alt={block.alt || ""}
-                        width={800}
-                        height={500}
-                        className="w-full h-auto object-cover"
-                      />
+                    <div className="w-full rounded-xl overflow-hidden shadow-lg border border-gray-100">
+                      <div className="relative w-full h-[250px] sm:h-[300px] md:h-[350px]">
+                        <Image
+                          src={block.src}
+                          alt={block.alt || ""}
+                          fill
+                          className="object-cover"
+                          sizes="(max-width: 768px) 100vw, 768px"
+                        />
+                      </div>
                     </div>
+                    {block.alt && (
+                      <figcaption className="text-xs sm:text-sm text-gray-500 mt-2 text-center italic">
+                        {block.alt}
+                      </figcaption>
+                    )}
                   </figure>
                 )
               }
