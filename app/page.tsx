@@ -4,7 +4,7 @@ import { BikeIcon, User, Calendar, Mail, Instagram } from "lucide-react"
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col relative overflow-hidden">
+    <div className="min-h-screen flex flex-col relative overflow-x-hidden">
       {/* Fixed Background Image */}
       <div className="fixed inset-0 z-0 fixed-bg">
         <Image
@@ -17,6 +17,7 @@ export default function Home() {
           style={{
             transform: "translateZ(0)",
             backfaceVisibility: "hidden",
+            WebkitBackfaceVisibility: "hidden",
           }}
         />
         <div className="absolute inset-0 bg-[#191340]/30" />
@@ -25,7 +26,7 @@ export default function Home() {
       {/* Main Content */}
       <main className="relative z-10 flex-1">
         {/* Hero Section */}
-        <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
+        <section className="min-h-[calc(100vh-4rem)] min-h-[calc(100dvh-4rem)] flex items-center justify-center px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
           <div className="container mx-auto text-center max-w-6xl">
             <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 sm:mb-6 text-white drop-shadow-lg leading-tight">
               Steigere deine Radsportleistung

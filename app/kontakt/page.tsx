@@ -5,7 +5,7 @@ export default function Kontakt() {
   return (
     <div className="min-h-screen flex flex-col safari-flex-fix">
       {/* Hero Section mit Bild */}
-      <div className="relative h-[40vh] sm:h-[50vh] md:h-[60vh] lg:h-[70vh]">
+      <div className="relative h-[35vh] sm:h-[45vh] md:h-[55vh] lg:h-[65vh] min-h-[250px]">
         <div className="absolute inset-0 overflow-hidden">
           <Image
             src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Sport%20Coach%20Ziel.jpg-dOvd30h7UlMQ8ROGNVBLJOs4Bqgyyl.jpeg"
@@ -16,7 +16,9 @@ export default function Kontakt() {
             sizes="100vw"
             style={{
               objectPosition: "center center",
-              transform: "translateZ(0)" /* Safari-Optimierung für Bildrendering */,
+              transform: "translateZ(0)",
+              WebkitBackfaceVisibility: "hidden",
+              backfaceVisibility: "hidden",
             }}
           />
         </div>

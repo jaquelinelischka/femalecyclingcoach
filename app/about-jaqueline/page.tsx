@@ -25,7 +25,6 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://femalecycling.at/about-jaqueline",
   },
-  viewport: "width=device-width, initial-scale=1, viewport-fit=cover",
 }
 
 // Structured Data for SEO

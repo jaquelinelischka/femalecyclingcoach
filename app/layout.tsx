@@ -1,5 +1,5 @@
 import type React from "react"
-import type { Metadata } from "next"
+import type { Metadata, Viewport } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
 import Image from "next/image"
@@ -9,11 +9,19 @@ import { Instagram } from "lucide-react"
 
 const inter = Inter({ subsets: ["latin"], display: "swap" })
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  userScalable: true,
+  viewportFit: "cover",
+  themeColor: "#191340",
+}
+
 export const metadata: Metadata = {
   title: "Female Cycling Coach",
   description: "Professionelles Coaching und maßgeschneiderte Trainingspläne für Radfahrerinnen",
-  viewport: "width=device-width, initial-scale=1, viewport-fit=cover",
-    generator: 'v0.app'
+  generator: "v0.app",
 }
 
 export default function RootLayout({
@@ -22,16 +30,16 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="de" className="h-full">
+    <html lang="de" className="h-full antialiased" suppressHydrationWarning>
       <head>
-        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="format-detection" content="telephone=no" />
+        <meta name="mobile-web-app-capable" content="yes" />
       </head>
-      <body className={`${inter.className} h-full overflow-x-hidden`}>
-        <header className="bg-white fixed top-0 left-0 right-0 z-50 shadow-md">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-14 sm:h-16 lg:h-20">
+      <body className={`${inter.className} min-h-full overflow-x-hidden`}>
+        <header className="bg-white fixed top-0 left-0 right-0 z-50 shadow-md safe-area-inset">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16 sm:h-18 lg:h-20">
             <Link href="/" className="flex items-center py-2 flex-shrink-0 touch-manipulation">
               <Image
                 src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/female%20cycling%20coach_cropped-FbUKs8gA07vLDiXMW5OFSzUdijlNns.svg"
@@ -49,7 +57,7 @@ export default function RootLayout({
             <Navigation />
           </div>
         </header>
-        <main className="pt-14 sm:pt-16 lg:pt-20 min-h-screen">{children}</main>
+        <main className="pt-16 sm:pt-18 lg:pt-20 min-h-screen flex-1">{children}</main>
         <footer className="bg-gray-100 text-gray-700 py-4 sm:py-6 border-t border-gray-200">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <div className="flex justify-center mb-2 sm:mb-3">
