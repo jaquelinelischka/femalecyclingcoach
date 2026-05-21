@@ -301,13 +301,13 @@ export default async function StoryPage({ params }: Props) {
               }
               if (block.type === "image" && block.src) {
                 return (
-                  <figure key={index} className="my-8 flex justify-center">
-                    <div className="w-full max-w-md rounded-lg overflow-hidden shadow-md">
+                  <figure key={index} className="my-8">
+                    <div className="w-full rounded-lg overflow-hidden shadow-md">
                       <Image
                         src={block.src}
                         alt={block.alt || ""}
-                        width={400}
-                        height={300}
+                        width={800}
+                        height={500}
                         className="w-full h-auto object-cover"
                       />
                     </div>
