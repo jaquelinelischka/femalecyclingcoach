@@ -39,22 +39,24 @@ export default function RootLayout({
       </head>
       <body className={`${inter.className} min-h-full overflow-x-hidden`}>
         <header className="bg-white fixed top-0 left-0 right-0 z-50 shadow-md safe-area-inset">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16 sm:h-18 lg:h-20">
-            <Link href="/" className="flex items-center py-2 flex-shrink-0 touch-manipulation">
-              <Image
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/female%20cycling%20coach_cropped-FbUKs8gA07vLDiXMW5OFSzUdijlNns.svg"
-                alt="Female Cycling Coach Logo"
-                width={240}
-                height={43}
-                priority
-                className="h-6 sm:h-8 lg:h-10 xl:h-12 w-auto"
-                style={{
-                  transform: "translateZ(0)",
-                  backfaceVisibility: "hidden",
-                }}
-              />
-            </Link>
-            <Navigation />
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-18 lg:h-20">
+            <div className="flex items-center justify-between h-full">
+              <Link href="/" className="flex items-center py-2 flex-shrink-0 touch-manipulation">
+                <Image
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/female%20cycling%20coach_cropped-FbUKs8gA07vLDiXMW5OFSzUdijlNns.svg"
+                  alt="Female Cycling Coach Logo"
+                  width={240}
+                  height={43}
+                  priority
+                  className="h-6 sm:h-8 lg:h-10 xl:h-12 w-auto"
+                  style={{
+                    transform: "translateZ(0)",
+                    backfaceVisibility: "hidden",
+                  }}
+                />
+              </Link>
+              <Navigation />
+            </div>
           </div>
         </header>
         <main className="pt-16 sm:pt-18 lg:pt-20 min-h-screen flex-1">{children}</main>

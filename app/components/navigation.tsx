@@ -75,9 +75,9 @@ export function Navigation() {
 
   return (
     <>
-      {/* Desktop Navigation */}
-      <nav className="h-full hidden md:block safari-flex-fix">
-        <ul className="flex h-full space-x-4 lg:space-x-8">
+      {/* Desktop Navigation - hidden on mobile, visible from md breakpoint */}
+      <nav className="hidden md:flex h-full items-center">
+        <ul className="flex h-full items-center space-x-4 lg:space-x-8">
           {navItems.map((item) => (
             <li
               key={item.label}
@@ -136,8 +136,8 @@ export function Navigation() {
         </ul>
       </nav>
 
-      {/* Mobile Navigation - Burger Menu */}
-      <div className="md:hidden flex items-center safari-flex-fix">
+      {/* Mobile Navigation - Burger Menu - visible on mobile, hidden from md breakpoint */}
+      <div className="flex md:hidden items-center">
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           className="relative text-[#191340] p-2 rounded-lg hover:bg-gray-100 active:bg-gray-200 transition-colors min-h-[48px] min-w-[48px] flex items-center justify-center touch-manipulation"
