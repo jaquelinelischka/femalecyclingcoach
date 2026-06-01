@@ -33,7 +33,7 @@ export function Navigation() {
   // Schließe mobile Menü bei Größenänderung des Fensters
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth >= 768) {
+      if (window.innerWidth >= 1024) {
         setMobileMenuOpen(false)
         setOpenDropdown(null)
       }
@@ -75,8 +75,8 @@ export function Navigation() {
 
   return (
     <>
-      {/* Desktop Navigation - hidden on mobile, visible from md breakpoint */}
-      <nav className="hidden md:flex h-full items-center">
+      {/* Desktop Navigation - hidden on mobile, visible from lg breakpoint */}
+      <nav className="hidden lg:flex h-full items-center">
         <ul className="flex h-full items-center space-x-4 lg:space-x-8">
           {navItems.map((item) => (
             <li
@@ -136,8 +136,8 @@ export function Navigation() {
         </ul>
       </nav>
 
-      {/* Mobile Navigation - Burger Menu - visible on mobile, hidden from md breakpoint */}
-      <div className="flex md:hidden items-center">
+      {/* Mobile Navigation - Burger Menu - visible on mobile, hidden from lg breakpoint */}
+      <div className="flex lg:hidden items-center">
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           className="relative text-[#191340] p-2 rounded-lg hover:bg-gray-100 active:bg-gray-200 transition-colors min-h-[48px] min-w-[48px] flex items-center justify-center touch-manipulation"
