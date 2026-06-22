@@ -76,7 +76,7 @@ export default function RootLayout({
             </p>
             <div className="mt-2 sm:mt-3 text-xs text-gray-500">
               <p className="break-words px-2">
-                Jaqueline Lischka | Mühlgrundgasse 26, 1220 Wien | info@femalecycling.at
+                Jaqueline Lischka | Mühlgrundgasse 26, 1220 Wien | femalecyclingcoach@gmail.com
               </p>
             </div>
           </div>

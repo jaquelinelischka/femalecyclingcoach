@@ -240,7 +240,7 @@ export default function FemaleCyclingCoachLandingPage() {
           </div>
           <p className="text-sm">&copy; {new Date().getFullYear()} Female Cycling Coach. Alle Rechte vorbehalten.</p>
           <div className="mt-3 text-xs text-gray-500">
-            <p>Jaqueline Lischka | Mühlgrundgasse 26, 1220 Wien | info@femalecycling.at</p>
+            <p>Jaqueline Lischka | Mühlgrundgasse 26, 1220 Wien | femalecyclingcoach@gmail.com</p>
           </div>
         </div>
       </footer>

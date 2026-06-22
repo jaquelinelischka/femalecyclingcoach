@@ -45,7 +45,7 @@ const structuredData = {
     postalCode: "1220",
     addressCountry: "AT",
   },
-  email: "info@femalecycling.at",
+  email: "femalecyclingcoach@gmail.com",
   knowsAbout: [
     "Cycling Training",
     "Women's Sports Coaching",
