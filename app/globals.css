@@ -61,12 +61,6 @@ img {
 
 /* Safari spezifische Anpassungen */
 @supports (-webkit-touch-callout: none) {
-  .safari-flex-fix {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: flex;
-  }
-
   /* Safari Backdrop-Filter */
   .backdrop-blur-sm {
     -webkit-backdrop-filter: blur(4px);

@@ -66,19 +66,19 @@ export function Navigation() {
   return (
     <>
       {/* Desktop Navigation */}
-      <nav className="h-full hidden md:block safari-flex-fix">
+      <nav className="h-full hidden md:block">
         <ul className="flex h-full space-x-4 lg:space-x-8">
           {navItems.map((item) => (
             <li
               key={item.label}
-              className="flex items-center relative h-full safari-flex-fix"
+              className="flex items-center relative h-full"
               onMouseEnter={() => item.children && setOpenDropdown(item.label)}
               onMouseLeave={() => setOpenDropdown(null)}
             >
               {item.children ? (
-                <div ref={dropdownRef} className="h-full flex items-center safari-flex-fix">
+                <div ref={dropdownRef} className="h-full flex items-center">
                   <button
-                    className="flex items-center text-base lg:text-lg font-medium text-[#191340] hover:text-[#4a6d58] transition-colors duration-200 ease-in-out py-2 safari-flex-fix touch-manipulation"
+                    className="flex items-center text-base lg:text-lg font-medium text-[#191340] hover:text-[#4a6d58] transition-colors duration-200 ease-in-out py-2 touch-manipulation"
                     onClick={() => setOpenDropdown(openDropdown === item.label ? null : item.label)}
                     aria-expanded={openDropdown === item.label}
                     aria-haspopup="true"
@@ -127,7 +127,7 @@ export function Navigation() {
       </nav>
 
       {/* Mobile Navigation */}
-      <div className="md:hidden flex items-center safari-flex-fix">
+      <div className="md:hidden flex items-center">
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           className="text-[#191340] p-2 rounded-md hover:bg-gray-100 transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center touch-manipulation"
