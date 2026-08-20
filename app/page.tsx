@@ -1,58 +1,25 @@
 import Image from "next/image"
 import Link from "next/link"
 import { BikeIcon, User, Calendar, Mail, Instagram } from "lucide-react"
+import { Hero } from "./components/hero"
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col relative overflow-x-hidden">
-      {/* Fixed Background Image */}
-      <div className="fixed inset-0 z-0 fixed-bg">
-        <Image
-          src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Jaqueline%20Lischka-9rlHu1DLMZAZDpRcpNqAdOfO7tsZkC.png"
-          alt="Background"
-          fill
-          className="object-cover object-center"
-          priority
-          sizes="100vw"
-          style={{
-            transform: "translateZ(0)",
-            backfaceVisibility: "hidden",
-            WebkitBackfaceVisibility: "hidden",
-          }}
-        />
-        <div className="absolute inset-0 bg-[#191340]/30" />
-      </div>
-
+    <div className="min-h-screen flex flex-col relative overflow-x-hidden bg-white">
       {/* Main Content */}
       <main className="relative z-10 flex-1">
         {/* Hero Section */}
-        <section className="min-h-[calc(100vh-4rem)] min-h-[calc(100dvh-4rem)] flex items-center justify-center px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
-          <div className="container mx-auto text-center max-w-6xl">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 sm:mb-6 text-white drop-shadow-lg leading-tight">
-              Steigere deine Radsportleistung
-            </h1>
-            <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl mb-6 sm:mb-8 text-white drop-shadow-lg max-w-4xl mx-auto leading-relaxed px-2 sm:px-4">
-              Professionelles Coaching und maßgeschneiderte Trainingspläne für Radfahrer aller Niveaus, mit besonderer
-              Expertise im Frauenradsport.
-            </p>
-            <Link
-              href="/preise"
-              className="bg-white text-[#191340] py-3 sm:py-4 px-6 sm:px-8 rounded-full font-semibold hover:bg-gray-100 transition duration-300 shadow-lg text-sm sm:text-base lg:text-lg min-h-[44px] inline-flex items-center justify-center touch-manipulation"
-            >
-              Jetzt starten
-            </Link>
-          </div>
-        </section>
+        <Hero />
 
         {/* Leistungen Section */}
-        <section id="leistungen" className="py-12 sm:py-16 lg:py-20 bg-white/80 backdrop-blur-sm">
+        <section id="leistungen" className="py-12 sm:py-16 lg:py-20 bg-white">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-12 text-[#191340]">
               Meine Leistungen
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 max-w-6xl mx-auto">
               <div className="bg-white/90 p-6 sm:p-8 rounded-lg shadow-md">
-                <BikeIcon className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 text-[#4a6d58] mb-4" />
+                <BikeIcon className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 text-[#FF5A1F] mb-4" />
                 <h3 className="text-base sm:text-lg lg:text-xl font-semibold mb-3 text-[#191340]">
                   Individueller Trainingsplan
                 </h3>
@@ -62,7 +29,7 @@ export default function Home() {
                 </p>
               </div>
               <div className="bg-white/90 p-6 sm:p-8 rounded-lg shadow-md">
-                <User className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 text-[#4a6d58] mb-4" />
+                <User className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 text-[#FF5A1F] mb-4" />
                 <h3 className="text-base sm:text-lg lg:text-xl font-semibold mb-3 text-[#191340]">
                   Persönliches Coaching
                 </h3>
@@ -76,7 +43,7 @@ export default function Home() {
         </section>
 
         {/* Über Mich Section */}
-        <section id="ueber-mich" className="py-12 sm:py-16 lg:py-20 bg-white/80 backdrop-blur-sm">
+        <section id="ueber-mich" className="py-12 sm:py-16 lg:py-20 bg-[#f5f5f3]">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-12 text-[#191340]">
               About Jaqueline
@@ -128,7 +95,7 @@ export default function Home() {
                   </p>
                   <Link
                     href="/about-jaqueline"
-                    className="text-[#191340] font-medium hover:text-[#4a6d58] transition-colors text-sm sm:text-base whitespace-nowrap min-h-[44px] flex items-center touch-manipulation"
+                    className="text-[#191340] font-medium hover:text-[#FF5A1F] transition-colors text-sm sm:text-base whitespace-nowrap min-h-[44px] flex items-center touch-manipulation"
                   >
                     Mehr über mich →
                   </Link>
@@ -139,7 +106,7 @@ export default function Home() {
         </section>
 
         {/* Kontakt Section */}
-        <section id="kontakt" className="py-12 sm:py-16 lg:py-20 bg-[#191340]/80 backdrop-blur-sm text-white">
+        <section id="kontakt" className="py-12 sm:py-16 lg:py-20 bg-[#191340] text-white">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-6 sm:mb-8">
               Bereit, dein Radsport-Potenzial zu entfalten?

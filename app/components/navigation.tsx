@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { ChevronDown, Menu, X } from "lucide-react"
 
 interface NavItem {
@@ -15,6 +16,10 @@ export function Navigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const dropdownRef = useRef<HTMLDivElement>(null)
   const mobileMenuRef = useRef<HTMLDivElement>(null)
+  const pathname = usePathname()
+
+  const isActive = (href: string) => (href === "/" ? pathname === "/" : pathname.startsWith(href))
+  const isGroupActive = (children?: { href: string }[]) => children?.some((c) => isActive(c.href)) ?? false
 
   // Schließe Dropdown bei Klick außerhalb
   useEffect(() => {
@@ -67,62 +72,76 @@ export function Navigation() {
     <>
       {/* Desktop Navigation */}
       <nav className="h-full hidden md:block">
-        <ul className="flex h-full space-x-4 lg:space-x-8">
-          {navItems.map((item) => (
-            <li
-              key={item.label}
-              className="flex items-center relative h-full"
-              onMouseEnter={() => item.children && setOpenDropdown(item.label)}
-              onMouseLeave={() => setOpenDropdown(null)}
-            >
-              {item.children ? (
-                <div ref={dropdownRef} className="h-full flex items-center">
-                  <button
-                    className="flex items-center text-base lg:text-lg font-medium text-[#191340] hover:text-[#4a6d58] transition-colors duration-200 ease-in-out py-2 touch-manipulation"
-                    onClick={() => setOpenDropdown(openDropdown === item.label ? null : item.label)}
-                    aria-expanded={openDropdown === item.label}
-                    aria-haspopup="true"
-                    type="button"
+        <ul className="flex h-full items-center gap-6 lg:gap-9">
+          {navItems.map((item) => {
+            const groupActive = isGroupActive(item.children)
+            const active = item.children ? groupActive : isActive(item.href)
+            return (
+              <li
+                key={item.label}
+                className="flex items-center relative"
+                onMouseEnter={() => item.children && setOpenDropdown(item.label)}
+                onMouseLeave={() => setOpenDropdown(null)}
+              >
+                {item.children ? (
+                  <div ref={dropdownRef} className="flex items-center">
+                    <button
+                      className={`flex items-center rounded-full text-sm lg:text-[15px] transition-colors duration-200 touch-manipulation ${
+                        active
+                          ? "border border-[#191340] px-4 py-1.5 font-semibold text-[#191340]"
+                          : "px-1 py-1.5 font-medium text-[#191340]/80 hover:text-[#191340]"
+                      }`}
+                      onClick={() => setOpenDropdown(openDropdown === item.label ? null : item.label)}
+                      aria-expanded={openDropdown === item.label}
+                      aria-haspopup="true"
+                      type="button"
+                    >
+                      {item.label}
+                      <ChevronDown className="ml-1 h-3.5 w-3.5" />
+                    </button>
+                    {openDropdown === item.label && (
+                      <div
+                        className="absolute top-full right-0 mt-2 w-48 rounded-xl bg-white shadow-lg ring-1 ring-black/5 z-50"
+                        role="menu"
+                        aria-orientation="vertical"
+                      >
+                        <ul className="py-2">
+                          {item.children.map((child) => (
+                            <li key={child.label}>
+                              <Link
+                                href={child.href}
+                                className={`block px-4 py-2.5 text-sm touch-manipulation ${
+                                  isActive(child.href)
+                                    ? "font-semibold text-[#191340]"
+                                    : "text-[#191340]/80 hover:text-[#191340] hover:bg-gray-50"
+                                }`}
+                                role="menuitem"
+                                onClick={() => setOpenDropdown(null)}
+                              >
+                                {child.label}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <Link
+                    href={item.href}
+                    aria-current={active ? "page" : undefined}
+                    className={`rounded-full text-sm lg:text-[15px] transition-colors duration-200 touch-manipulation ${
+                      active
+                        ? "border border-[#191340] px-4 py-1.5 font-semibold text-[#191340]"
+                        : "px-1 py-1.5 font-medium text-[#191340]/80 hover:text-[#191340]"
+                    }`}
                   >
                     {item.label}
-                    <ChevronDown className="ml-1 h-3 w-3 lg:h-4 lg:w-4" />
-                  </button>
-                  {openDropdown === item.label && (
-                    <div
-                      className="absolute top-full left-0 mt-0 w-48 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 z-50"
-                      role="menu"
-                      aria-orientation="vertical"
-                    >
-                      <ul className="py-1">
-                        {item.children.map((child) => (
-                          <li key={child.label}>
-                            <Link
-                              href={child.href}
-                              className="block px-4 py-3 text-sm text-[#191340] hover:bg-gray-100 hover:text-[#4a6d58] touch-manipulation"
-                              role="menuitem"
-                              onClick={() => setOpenDropdown(null)}
-                            >
-                              {child.label}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
-                </div>
-              ) : (
-                <Link
-                  href={item.href}
-                  className="text-base lg:text-lg font-medium text-[#191340] hover:text-[#4a6d58] transition-colors duration-200 ease-in-out
-                           relative py-2 after:content-[''] after:absolute after:left-0 after:bottom-0 
-                           after:w-0 after:h-0.5 after:bg-[#4a6d58] after:transition-all after:duration-300
-                           hover:after:w-full touch-manipulation"
-                >
-                  {item.label}
-                </Link>
-              )}
-            </li>
-          ))}
+                  </Link>
+                )}
+              </li>
+            )
+          })}
         </ul>
       </nav>
 
@@ -192,7 +211,10 @@ export function Navigation() {
                   ) : (
                     <Link
                       href={item.href}
-                      className="block py-4 text-[#191340] text-base sm:text-lg min-h-[44px] flex items-center touch-manipulation"
+                      aria-current={isActive(item.href) ? "page" : undefined}
+                      className={`block py-4 text-base sm:text-lg min-h-[44px] flex items-center touch-manipulation ${
+                        isActive(item.href) ? "font-bold text-[#191340]" : "text-[#191340]/80"
+                      }`}
                       onClick={() => setMobileMenuOpen(false)}
                     >
                       {item.label}
