@@ -38,21 +38,24 @@ export default function RootLayout({
         <meta name="mobile-web-app-capable" content="yes" />
       </head>
       <body className={`${inter.className} min-h-full overflow-x-hidden`}>
-        <header className="bg-white fixed top-0 left-0 right-0 z-50 shadow-md safe-area-inset">
+        <header className="bg-white fixed top-0 left-0 right-0 z-50 safe-area-inset">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16 sm:h-18 lg:h-20">
-            <Link href="/" className="flex items-center py-2 flex-shrink-0 touch-manipulation">
+            <Link
+              href="/"
+              className="flex items-center gap-2.5 flex-shrink-0 touch-manipulation text-[#191340]"
+              aria-label="Female Cycling Coach — Startseite"
+            >
               <Image
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/female%20cycling%20coach_cropped-FbUKs8gA07vLDiXMW5OFSzUdijlNns.svg"
+                src="/fcc-logo.svg"
                 alt="Female Cycling Coach Logo"
-                width={240}
-                height={43}
+                width={40}
+                height={36}
                 priority
-                className="h-6 sm:h-8 lg:h-10 xl:h-12 w-auto"
-                style={{
-                  transform: "translateZ(0)",
-                  backfaceVisibility: "hidden",
-                }}
+                className="h-7 sm:h-8 lg:h-9 w-auto"
               />
+              <span className="text-sm sm:text-base lg:text-lg font-black uppercase tracking-tight leading-none">
+                Female Cycling Coach
+              </span>
             </Link>
             <Navigation />
           </div>

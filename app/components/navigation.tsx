@@ -1,209 +1,140 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect } from "react"
 import Link from "next/link"
-import { ChevronDown, Menu, X } from "lucide-react"
+import { usePathname } from "next/navigation"
+import { Menu, X, ArrowUpRight } from "lucide-react"
 
 interface NavItem {
   label: string
   href: string
-  children?: { label: string; href: string }[]
 }
 
 export function Navigation() {
-  const [openDropdown, setOpenDropdown] = useState<string | null>(null)
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const dropdownRef = useRef<HTMLDivElement>(null)
-  const mobileMenuRef = useRef<HTMLDivElement>(null)
+  const [menuOpen, setMenuOpen] = useState(false)
+  const pathname = usePathname()
 
-  // Schließe Dropdown bei Klick außerhalb
+  const isActive = (href: string) => (href === "/" ? pathname === "/" : pathname.startsWith(href))
+
+  // Menü bei Routenwechsel schließen
   useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setOpenDropdown(null)
-      }
-      if (mobileMenuRef.current && !mobileMenuRef.current.contains(event.target as Node)) {
-        setMobileMenuOpen(false)
-      }
-    }
+    setMenuOpen(false)
+  }, [pathname])
 
-    document.addEventListener("mousedown", handleClickOutside)
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside)
-    }
-  }, [])
-
-  // Schließe mobile Menü bei Größenänderung des Fensters
+  // Scroll sperren, wenn das Menü offen ist + Escape zum Schließen
   useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 768) {
-        setMobileMenuOpen(false)
-      }
+    document.body.style.overflow = menuOpen ? "hidden" : ""
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMenuOpen(false)
     }
-
-    window.addEventListener("resize", handleResize)
+    window.addEventListener("keydown", onKey)
     return () => {
-      window.removeEventListener("resize", handleResize)
+      document.body.style.overflow = ""
+      window.removeEventListener("keydown", onKey)
     }
-  }, [])
+  }, [menuOpen])
 
   const navItems: NavItem[] = [
     { label: "Home", href: "/" },
     { label: "About Jaqueline", href: "/about-jaqueline" },
-    {
-      label: "Angebote",
-      href: "#",
-      children: [
-        { label: "Leistungen", href: "/leistungen" },
-        { label: "Preise", href: "/preise" },
-        { label: "FAQ", href: "/faq" },
-      ],
-    },
+    { label: "Leistungen", href: "/leistungen" },
+    { label: "Preise", href: "/preise" },
+    { label: "FAQ", href: "/faq" },
     { label: "Stories", href: "/stories" },
     { label: "Kontakt", href: "/kontakt" },
   ]
 
   return (
     <>
-      {/* Desktop Navigation */}
-      <nav className="h-full hidden md:block">
-        <ul className="flex h-full space-x-4 lg:space-x-8">
-          {navItems.map((item) => (
-            <li
-              key={item.label}
-              className="flex items-center relative h-full"
-              onMouseEnter={() => item.children && setOpenDropdown(item.label)}
-              onMouseLeave={() => setOpenDropdown(null)}
-            >
-              {item.children ? (
-                <div ref={dropdownRef} className="h-full flex items-center">
-                  <button
-                    className="flex items-center text-base lg:text-lg font-medium text-[#191340] hover:text-[#4a6d58] transition-colors duration-200 ease-in-out py-2 touch-manipulation"
-                    onClick={() => setOpenDropdown(openDropdown === item.label ? null : item.label)}
-                    aria-expanded={openDropdown === item.label}
-                    aria-haspopup="true"
-                    type="button"
-                  >
-                    {item.label}
-                    <ChevronDown className="ml-1 h-3 w-3 lg:h-4 lg:w-4" />
-                  </button>
-                  {openDropdown === item.label && (
-                    <div
-                      className="absolute top-full left-0 mt-0 w-48 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 z-50"
-                      role="menu"
-                      aria-orientation="vertical"
-                    >
-                      <ul className="py-1">
-                        {item.children.map((child) => (
-                          <li key={child.label}>
-                            <Link
-                              href={child.href}
-                              className="block px-4 py-3 text-sm text-[#191340] hover:bg-gray-100 hover:text-[#4a6d58] touch-manipulation"
-                              role="menuitem"
-                              onClick={() => setOpenDropdown(null)}
-                            >
-                              {child.label}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
-                </div>
-              ) : (
-                <Link
-                  href={item.href}
-                  className="text-base lg:text-lg font-medium text-[#191340] hover:text-[#4a6d58] transition-colors duration-200 ease-in-out
-                           relative py-2 after:content-[''] after:absolute after:left-0 after:bottom-0 
-                           after:w-0 after:h-0.5 after:bg-[#4a6d58] after:transition-all after:duration-300
-                           hover:after:w-full touch-manipulation"
-                >
-                  {item.label}
-                </Link>
-              )}
-            </li>
-          ))}
-        </ul>
-      </nav>
+      {/* Burger-Button */}
+      <button
+        onClick={() => setMenuOpen(true)}
+        className="flex items-center gap-2 text-[#191340] group touch-manipulation min-h-[44px]"
+        aria-label="Menü öffnen"
+        aria-expanded={menuOpen}
+        type="button"
+      >
+        <span className="hidden sm:inline text-sm font-semibold uppercase tracking-[0.15em]">Menü</span>
+        <span className="flex h-10 w-10 items-center justify-center rounded-full border border-[#191340] transition-colors duration-200 group-hover:bg-[#191340] group-hover:text-white">
+          <Menu size={18} />
+        </span>
+      </button>
 
-      {/* Mobile Navigation */}
-      <div className="md:hidden flex items-center">
-        <button
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="text-[#191340] p-2 rounded-md hover:bg-gray-100 transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center touch-manipulation"
-          aria-expanded={mobileMenuOpen}
-          aria-label="Toggle menu"
-        >
-          {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+      {/* Fullscreen Overlay-Menü */}
+      <div
+        className={`fixed inset-0 z-[60] flex flex-col bg-[#191340] text-white transition-all duration-500 ${
+          menuOpen ? "opacity-100 visible" : "pointer-events-none invisible opacity-0"
+        }`}
+        role="dialog"
+        aria-modal="true"
+        aria-hidden={!menuOpen}
+      >
+        {/* Top bar innerhalb des Overlays */}
+        <div className="container mx-auto flex h-16 shrink-0 items-center justify-between px-4 sm:h-18 sm:px-6 lg:h-20 lg:px-8">
+          <span className="text-sm font-black uppercase tracking-tight sm:text-base lg:text-lg">
+            Female Cycling Coach
+          </span>
+          <button
+            onClick={() => setMenuOpen(false)}
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-white/40 transition-colors duration-200 hover:bg-white hover:text-[#191340] touch-manipulation"
+            aria-label="Menü schließen"
+            type="button"
+          >
+            <X size={18} />
+          </button>
+        </div>
 
-        {/* Mobile Menu */}
-        {mobileMenuOpen && (
-          <>
-            {/* Backdrop */}
-            <div 
-              className="fixed inset-0 bg-black/20 z-40"
-              onClick={() => setMobileMenuOpen(false)}
-              aria-hidden="true"
-            />
-            <div
-              ref={mobileMenuRef}
-              className="fixed top-16 left-0 right-0 bg-white shadow-lg z-50 border-t border-gray-200 max-h-[calc(100vh-4rem)] max-h-[calc(100dvh-4rem)] overflow-y-auto mobile-nav overscroll-contain"
-              style={{
-                WebkitOverflowScrolling: "touch",
-              }}
-            >
-            <ul className="py-2">
-              {navItems.map((item) => (
-                <li key={item.label} className="px-4 sm:px-6">
-                  {item.children ? (
-                    <div>
-                      <button
-                        onClick={() => setOpenDropdown(openDropdown === item.label ? null : item.label)}
-                        className="flex items-center justify-between w-full py-4 text-[#191340] text-base sm:text-lg min-h-[44px] touch-manipulation"
-                        aria-expanded={openDropdown === item.label}
-                      >
-                        {item.label}
-                        <ChevronDown
-                          className={`h-5 w-5 transition-transform ${
-                            openDropdown === item.label ? "transform rotate-180" : ""
-                          }`}
-                        />
-                      </button>
-                      {openDropdown === item.label && (
-                        <ul className="pl-4 pb-2">
-                          {item.children.map((child) => (
-                            <li key={child.label}>
-                              <Link
-                                href={child.href}
-                                className="block py-3 text-[#191340] text-base min-h-[44px] flex items-center touch-manipulation"
-                                onClick={() => {
-                                  setOpenDropdown(null)
-                                  setMobileMenuOpen(false)
-                                }}
-                              >
-                                {child.label}
-                              </Link>
-                            </li>
-                          ))}
-                        </ul>
-                      )}
-                    </div>
-                  ) : (
+        {/* Scrollbarer Inhalt */}
+        <nav className="flex-1 overflow-y-auto overscroll-contain">
+          <div className="container mx-auto flex min-h-full flex-col px-4 pb-8 sm:px-6 lg:px-8">
+            <ul className="flex flex-col py-2">
+              {navItems.map((item, i) => {
+                const active = isActive(item.href)
+                return (
+                  <li key={item.href} className="border-b border-white/10">
                     <Link
                       href={item.href}
-                      className="block py-4 text-[#191340] text-base sm:text-lg min-h-[44px] flex items-center touch-manipulation"
-                      onClick={() => setMobileMenuOpen(false)}
+                      aria-current={active ? "page" : undefined}
+                      className={`group flex items-center justify-between py-3 transition-colors duration-200 lg:py-4 ${
+                        active ? "text-[#FF5A1F]" : "text-white hover:text-[#FF5A1F]"
+                      }`}
+                      style={{
+                        transitionDelay: menuOpen ? `${i * 40 + 100}ms` : "0ms",
+                      }}
                     >
-                      {item.label}
+                      <span className="flex items-baseline gap-3 sm:gap-4">
+                        <span className="font-mono text-xs text-white/40 tabular-nums">
+                          {String(i + 1).padStart(2, "0")}
+                        </span>
+                        <span className="text-2xl font-black uppercase leading-none tracking-tight sm:text-4xl lg:text-5xl">
+                          {item.label}
+                        </span>
+                      </span>
+                      <ArrowUpRight
+                        className="h-5 w-5 shrink-0 -translate-x-2 opacity-0 transition-all duration-200 group-hover:translate-x-0 group-hover:opacity-100 sm:h-7 sm:w-7"
+                        aria-hidden="true"
+                      />
                     </Link>
-                  )}
-                </li>
-              ))}
+                  </li>
+                )
+              })}
             </ul>
+
+            <div className="mt-auto flex flex-wrap items-center gap-x-6 gap-y-2 pt-6 text-sm text-white/60">
+              <a
+                href="https://www.instagram.com/ridewithjacky?igsh=MXJuZWg2MWRjc3NuMw%3D%3D&utm_source=qr"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition-colors hover:text-white"
+              >
+                Instagram
+              </a>
+              <a href="mailto:femalecyclingcoach@gmail.com" className="transition-colors hover:text-white">
+                femalecyclingcoach@gmail.com
+              </a>
+            </div>
           </div>
-          </>
-        )}
+        </nav>
       </div>
     </>
   )

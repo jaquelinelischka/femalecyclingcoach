@@ -92,20 +92,20 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <div className="border-b border-gray-200 last:border-0">
+    <div className="border-b border-[#191340]/10 last:border-0">
       <button
-        className="flex justify-between items-start w-full py-4 sm:py-6 px-4 sm:px-6 text-left focus:outline-none safari-flex-fix min-h-[44px]"
+        className="flex w-full min-h-[44px] items-start justify-between py-5 text-left focus:outline-none sm:py-6"
         onClick={() => setIsOpen(!isOpen)}
         aria-expanded={isOpen}
       >
-        <h3 className="text-base sm:text-lg font-medium text-[#191340] pr-4 leading-relaxed">{question}</h3>
-        <span className="ml-6 flex-shrink-0 text-[#191340]">
+        <h3 className="pr-4 text-base font-semibold leading-relaxed text-[#191340] sm:text-lg">{question}</h3>
+        <span className={`ml-6 flex-shrink-0 transition-colors ${isOpen ? "text-[#FF5A1F]" : "text-[#191340]"}`}>
           {isOpen ? <ChevronUp className="h-5 w-5 sm:h-6 sm:w-6" /> : <ChevronDown className="h-5 w-5 sm:h-6 sm:w-6" />}
         </span>
       </button>
       {isOpen && (
-        <div className="pb-4 sm:pb-6 px-4 sm:px-6">
-          <p className="text-gray-700 text-sm sm:text-base leading-relaxed">{answer}</p>
+        <div className="pb-5 sm:pb-6">
+          <p className="text-sm leading-relaxed text-[#191340]/70 sm:text-base">{answer}</p>
         </div>
       )}
     </div>
@@ -114,30 +114,45 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
 
 export default function FAQ() {
   return (
-    <div className="min-h-screen py-12 sm:py-16 lg:py-20 bg-gray-50">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-12 text-[#191340]">
-          Häufig gestellte Fragen
-        </h1>
+    <div className="bg-white">
+      {/* HEADER */}
+      <section className="border-b border-[#191340]/10">
+        <div className="container mx-auto px-4 pb-12 pt-28 sm:px-6 sm:pt-32 lg:px-8 lg:pb-16 lg:pt-40">
+          <span className="text-xs font-semibold uppercase tracking-[0.25em] text-[#FF5A1F]">Support</span>
+          <h1 className="mt-4 max-w-4xl text-4xl font-black uppercase leading-[0.9] tracking-tight text-[#191340] text-balance sm:text-6xl lg:text-7xl">
+            Häufige Fragen
+          </h1>
+          <p className="mt-6 max-w-2xl text-base leading-relaxed text-[#191340]/70 sm:text-lg">
+            Alles Wichtige rund um Coaching, Training und Zusammenarbeit – auf einen Blick.
+          </p>
+        </div>
+      </section>
 
-        <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-md overflow-hidden">
-          <div className="divide-y divide-gray-200">
+      {/* FAQ LISTE */}
+      <section className="py-16 sm:py-20 lg:py-24">
+        <div className="container mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+          <div>
             {faqData.map((faq, index) => (
               <FAQItem key={index} question={faq.question} answer={faq.answer} />
             ))}
           </div>
-        </div>
 
-        <div className="text-center mt-8 sm:mt-12">
-          <p className="text-gray-700 mb-4 sm:mb-6 text-sm sm:text-base">Hast du weitere Fragen?</p>
-          <a
-            href="/kontakt"
-            className="inline-flex items-center bg-[#191340] text-white py-3 px-6 sm:px-8 rounded-full hover:bg-[#191340]/90 transition-colors min-h-[44px] text-sm sm:text-base"
-          >
-            Kontaktiere mich
-          </a>
+          <div className="mt-16 rounded-2xl bg-[#191340] p-8 text-center sm:p-12">
+            <h2 className="text-2xl font-black uppercase tracking-tight text-white sm:text-3xl">
+              Noch Fragen offen?
+            </h2>
+            <p className="mx-auto mt-3 max-w-md text-white/70">
+              Melde dich einfach – ich beantworte dir gerne alles in einem persönlichen Gespräch.
+            </p>
+            <a
+              href="/kontakt"
+              className="mt-6 inline-flex min-h-[44px] items-center rounded-full bg-white px-8 py-3 text-sm font-semibold text-[#191340] transition-colors duration-200 hover:bg-[#FF5A1F] hover:text-white"
+            >
+              Kontaktiere mich
+            </a>
+          </div>
         </div>
-      </div>
+      </section>
     </div>
   )
 }
