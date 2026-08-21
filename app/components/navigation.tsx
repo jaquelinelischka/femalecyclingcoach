@@ -62,7 +62,7 @@ export function Navigation() {
 
       {/* Fullscreen Overlay-Menü */}
       <div
-        className={`fixed inset-0 z-[60] bg-[#191340] text-white transition-all duration-500 ${
+        className={`fixed inset-0 z-[60] flex flex-col bg-[#191340] text-white transition-all duration-500 ${
           menuOpen ? "opacity-100 visible" : "pointer-events-none invisible opacity-0"
         }`}
         role="dialog"
@@ -70,7 +70,7 @@ export function Navigation() {
         aria-hidden={!menuOpen}
       >
         {/* Top bar innerhalb des Overlays */}
-        <div className="container mx-auto flex h-16 items-center justify-between px-4 sm:h-18 sm:px-6 lg:h-20 lg:px-8">
+        <div className="container mx-auto flex h-16 shrink-0 items-center justify-between px-4 sm:h-18 sm:px-6 lg:h-20 lg:px-8">
           <span className="text-sm font-black uppercase tracking-tight sm:text-base lg:text-lg">
             Female Cycling Coach
           </span>
@@ -84,53 +84,55 @@ export function Navigation() {
           </button>
         </div>
 
-        {/* Menülinks */}
-        <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <ul className="mt-4 flex flex-col sm:mt-8">
-            {navItems.map((item, i) => {
-              const active = isActive(item.href)
-              return (
-                <li key={item.href} className="border-b border-white/10">
-                  <Link
-                    href={item.href}
-                    aria-current={active ? "page" : undefined}
-                    className={`group flex items-center justify-between py-3 sm:py-4 lg:py-5 transition-colors duration-200 ${
-                      active ? "text-[#FF5A1F]" : "text-white hover:text-[#FF5A1F]"
-                    }`}
-                    style={{
-                      transitionDelay: menuOpen ? `${i * 40 + 100}ms` : "0ms",
-                    }}
-                  >
-                    <span className="flex items-baseline gap-3 sm:gap-4">
-                      <span className="text-xs font-mono text-white/40 tabular-nums">
-                        {String(i + 1).padStart(2, "0")}
+        {/* Scrollbarer Inhalt */}
+        <nav className="flex-1 overflow-y-auto overscroll-contain">
+          <div className="container mx-auto flex min-h-full flex-col px-4 pb-8 sm:px-6 lg:px-8">
+            <ul className="flex flex-col py-2">
+              {navItems.map((item, i) => {
+                const active = isActive(item.href)
+                return (
+                  <li key={item.href} className="border-b border-white/10">
+                    <Link
+                      href={item.href}
+                      aria-current={active ? "page" : undefined}
+                      className={`group flex items-center justify-between py-3 transition-colors duration-200 lg:py-4 ${
+                        active ? "text-[#FF5A1F]" : "text-white hover:text-[#FF5A1F]"
+                      }`}
+                      style={{
+                        transitionDelay: menuOpen ? `${i * 40 + 100}ms` : "0ms",
+                      }}
+                    >
+                      <span className="flex items-baseline gap-3 sm:gap-4">
+                        <span className="font-mono text-xs text-white/40 tabular-nums">
+                          {String(i + 1).padStart(2, "0")}
+                        </span>
+                        <span className="text-2xl font-black uppercase leading-none tracking-tight sm:text-4xl lg:text-5xl">
+                          {item.label}
+                        </span>
                       </span>
-                      <span className="text-3xl font-black uppercase leading-none tracking-tight sm:text-5xl lg:text-6xl">
-                        {item.label}
-                      </span>
-                    </span>
-                    <ArrowUpRight
-                      className="h-6 w-6 shrink-0 -translate-x-2 opacity-0 transition-all duration-200 group-hover:translate-x-0 group-hover:opacity-100 sm:h-8 sm:w-8"
-                      aria-hidden="true"
-                    />
-                  </Link>
-                </li>
-              )
-            })}
-          </ul>
+                      <ArrowUpRight
+                        className="h-5 w-5 shrink-0 -translate-x-2 opacity-0 transition-all duration-200 group-hover:translate-x-0 group-hover:opacity-100 sm:h-7 sm:w-7"
+                        aria-hidden="true"
+                      />
+                    </Link>
+                  </li>
+                )
+              })}
+            </ul>
 
-          <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-white/60 sm:mt-12">
-            <a
-              href="https://www.instagram.com/ridewithjacky?igsh=MXJuZWg2MWRjc3NuMw%3D%3D&utm_source=qr"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-white transition-colors"
-            >
-              Instagram
-            </a>
-            <a href="mailto:femalecyclingcoach@gmail.com" className="hover:text-white transition-colors">
-              femalecyclingcoach@gmail.com
-            </a>
+            <div className="mt-auto flex flex-wrap items-center gap-x-6 gap-y-2 pt-6 text-sm text-white/60">
+              <a
+                href="https://www.instagram.com/ridewithjacky?igsh=MXJuZWg2MWRjc3NuMw%3D%3D&utm_source=qr"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition-colors hover:text-white"
+              >
+                Instagram
+              </a>
+              <a href="mailto:femalecyclingcoach@gmail.com" className="transition-colors hover:text-white">
+                femalecyclingcoach@gmail.com
+              </a>
+            </div>
           </div>
         </nav>
       </div>
