@@ -1,28 +1,27 @@
 import Link from "next/link"
+import Image from "next/image"
 import { RotatingBadge } from "./rotating-badge"
 
 export function Hero() {
   return (
     <section className="relative w-full min-h-[calc(100vh-4rem)] min-h-[calc(100dvh-4rem)] overflow-hidden bg-[#191340]">
-      {/* Full-bleed Hintergrund: Video-Platzhalter.
-          Sobald du ein Video hast, ersetze <img> durch:
-          <video autoPlay muted loop playsInline poster="/hero-poster.jpg" className="...">
+      {/* Full-bleed Hintergrund.
+          Sobald du ein Video hast, ersetze das <Image> durch:
+          <video autoPlay muted loop playsInline poster="/hero-poster.jpg" className="h-full w-full object-cover">
             <source src="/hero.mp4" type="video/mp4" />
           </video>
       */}
       <div className="absolute inset-0 z-0">
-        {/* PLATZHALTER — hier kommt später dein Hintergrund-Video / -Bild rein */}
-        <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-[#191340] via-[#241a5c] to-[#0f0b26]">
-          <div className="flex flex-col items-center gap-3 text-white/40">
-            <svg className="h-14 w-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}>
-              <rect x="2" y="4" width="20" height="16" rx="2" />
-              <path d="m10 9 5 3-5 3z" fill="currentColor" stroke="none" />
-            </svg>
-            <span className="text-xs font-medium uppercase tracking-[0.2em]">Video / Bild Platzhalter</span>
-          </div>
-        </div>
+        <Image
+          src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1.JPG-8BSLkbcYlJ8jZPJP8lC1j5KLvMbIEa.jpeg"
+          alt="Radrennfahrerinnen im Peloton während eines Straßenrennens"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-[center_25%]"
+        />
         {/* Abdunklung für Lesbarkeit der Headline */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/25 to-black/30" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/20" />
       </div>
 
       {/* Rotierendes Sticker-Badge, ragt leicht über den oberen rechten Bildrand hinaus */}

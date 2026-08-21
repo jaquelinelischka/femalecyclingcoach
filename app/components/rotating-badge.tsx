@@ -9,7 +9,10 @@ interface RotatingBadgeProps {
  * Rundes, langsam rotierendes Sticker-Badge mit gebogenem Text (curved text)
  * entlang des Kreisrands. Der Pfeil in der Mitte deutet die Rotation an.
  */
-export function RotatingBadge({ text = "PERSONAL COACHING · STARK WERDEN · ", className = "" }: RotatingBadgeProps) {
+export function RotatingBadge({
+  text = "STRONGER RIDERS · BY PERSONAL COACHING · ",
+  className = "",
+}: RotatingBadgeProps) {
   return (
     <div
       className={`relative flex items-center justify-center rounded-full bg-[#FF5A1F] text-[#191340] shadow-xl ${className}`}
@@ -20,7 +23,7 @@ export function RotatingBadge({ text = "PERSONAL COACHING · STARK WERDEN · ", 
         <defs>
           <path id="badge-curve" d="M 100,100 m -74,0 a 74,74 0 1,1 148,0 a 74,74 0 1,1 -148,0" fill="none" />
         </defs>
-        <text className="fill-[#191340] text-[15px] font-bold uppercase tracking-[0.18em]">
+        <text className="fill-[#191340] text-[13px] font-bold uppercase tracking-[0.12em]">
           <textPath href="#badge-curve" startOffset="0">
             {text}
           </textPath>
