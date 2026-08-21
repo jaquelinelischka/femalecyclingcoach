@@ -39,13 +39,13 @@ const stories: Story[] = [
 export default function StoriesPage() {
   return (
     <div className="min-h-screen bg-[#fafafa]">
-      {/* Hero Section */}
-      <div className="relative h-[35vh] sm:h-[45vh] md:h-[50vh] min-h-[280px] overflow-hidden">
+      {/* HERO – full-bleed */}
+      <div className="relative min-h-[65vh] w-full overflow-hidden bg-[#191340]">
         <Image
-          src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/354020941.JPG-cUoM2yyZRgHBmL9RzupWsQAKKbgwCd.jpeg"
-          alt="Radfahrerin in den Bergen"
+          src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_8260%202.JPG-w8ysDY9HjdSoh5QfACgC4yNWLiKojZ.jpeg"
+          alt="Rennfahrerin auf einer Bergstraße vor Alpenpanorama"
           fill
-          className="object-cover"
+          className="object-cover object-[center_30%]"
           priority
           sizes="100vw"
           style={{
@@ -54,18 +54,18 @@ export default function StoriesPage() {
             backfaceVisibility: "hidden",
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#191340]/90 via-[#191340]/50 to-[#191340]/20" />
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="text-center px-4">
-            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full mb-6">
-              <BookOpen className="w-4 h-4 text-white" />
-              <span className="text-sm text-white font-medium">Athletinnen-Geschichten</span>
-            </div>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-4 text-balance">
+        <div className="absolute inset-0 bg-gradient-to-t from-[#191340] via-[#191340]/50 to-black/30" />
+        <div className="relative z-10 flex min-h-[65vh] items-end">
+          <div className="container mx-auto px-4 pb-12 sm:px-6 sm:pb-16 lg:px-8 lg:pb-20">
+            <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.25em] text-[#FF5A1F]">
+              <BookOpen className="h-4 w-4" />
+              Athletinnen-Geschichten
+            </span>
+            <h1 className="mt-4 max-w-4xl text-4xl font-black uppercase leading-[0.9] tracking-tight text-white text-balance sm:text-6xl lg:text-8xl">
               Stories
             </h1>
-            <p className="text-base sm:text-lg md:text-xl text-white/80 max-w-2xl mx-auto text-pretty">
-              Echte Erfahrungen, echte Emotionen, echte Abenteuer
+            <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/80 sm:text-lg">
+              Echte Erfahrungen, echte Emotionen, echte Abenteuer auf dem Rad.
             </p>
           </div>
         </div>
@@ -76,10 +76,10 @@ export default function StoriesPage() {
         <div className="container mx-auto max-w-6xl">
           {/* Section Header */}
           <div className="mb-10 sm:mb-12">
-            <h2 className="text-sm font-semibold text-[#4a6d58] uppercase tracking-wider mb-2">
+            <h2 className="mb-2 text-xs font-semibold uppercase tracking-[0.25em] text-[#FF5A1F]">
               Neueste Geschichten
             </h2>
-            <div className="w-12 h-1 bg-[#4a6d58] rounded-full" />
+            <div className="h-1 w-12 rounded-full bg-[#FF5A1F]" />
           </div>
 
           {/* Stories Grid */}
@@ -117,7 +117,7 @@ export default function StoriesPage() {
                           </div>
 
                           {/* Title */}
-                          <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#191340] mb-4 group-hover:text-[#4a6d58] transition-colors duration-300 text-balance leading-tight">
+                          <h3 className="mb-4 text-2xl font-black uppercase leading-tight tracking-tight text-[#191340] transition-colors duration-300 text-balance group-hover:text-[#FF5A1F] sm:text-3xl lg:text-4xl">
                             {story.title}
                           </h3>
 
@@ -134,9 +134,9 @@ export default function StoriesPage() {
                             <span>{story.readingTime} Lesezeit</span>
                           </div>
                           
-                          <div className="flex items-center gap-1.5 text-[#4a6d58] font-semibold text-sm group-hover:gap-3 transition-all duration-300">
+                          <div className="flex items-center gap-1.5 text-sm font-semibold text-[#FF5A1F] transition-all duration-300 group-hover:gap-3">
                             <span>Weiterlesen</span>
-                            <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+                            <ChevronRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                           </div>
                         </div>
                       </div>

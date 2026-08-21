@@ -1,103 +1,111 @@
-import { CheckCircle } from "lucide-react"
+import { Check } from "lucide-react"
+import Link from "next/link"
+
+const packages = [
+  {
+    name: "Einsteiger-Paket",
+    price: "149",
+    features: ["Monatlicher Trainingsplan", "Monatliches Check-in", "WhatsApp-Support"],
+    featured: false,
+  },
+  {
+    name: "Fortgeschrittenen-Paket",
+    price: "199",
+    features: [
+      "Individueller Trainingsplan",
+      "Zweiwöchentliche Video-Calls",
+      "Leistungsanalyse",
+      "Prioritäts-Support",
+    ],
+    featured: true,
+  },
+  {
+    name: "Profi-Paket",
+    price: "249",
+    features: [
+      "Maßgeschneiderter Trainingsplan",
+      "Wöchentliche Video-Calls",
+      "Praxisnahe Ernährungstipps",
+      "24/7 Support",
+    ],
+    featured: false,
+  },
+]
 
 export default function Preise() {
   return (
-    <div className="min-h-screen py-12 sm:py-16 lg:py-20 bg-gray-100">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-12 text-[#1a4b84]">
-          Preise und Pakete
-        </h1>
-        <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-8 max-w-7xl mx-auto">
-          <div className="bg-white p-6 sm:p-8 rounded-lg shadow-md flex flex-col">
-            <h2 className="text-lg sm:text-xl font-semibold mb-4 sm:mb-6 text-[#1a4b84]">Einsteiger-Paket</h2>
-            <ul className="mb-6 sm:mb-8 flex-grow space-y-3">
-              <li className="flex items-start">
-                <CheckCircle className="w-5 h-5 mr-3 text-[#4a6d58] flex-shrink-0 mt-0.5" />
-                <span className="text-sm sm:text-base">Monatlicher Trainingsplan</span>
-              </li>
-              <li className="flex items-start">
-                <CheckCircle className="w-5 h-5 mr-3 text-[#4a6d58] flex-shrink-0 mt-0.5" />
-                <span className="text-sm sm:text-base">Monatliches Check-in</span>
-              </li>
-              <li className="flex items-start">
-                <CheckCircle className="w-5 h-5 mr-3 text-[#4a6d58] flex-shrink-0 mt-0.5" />
-                <span className="text-sm sm:text-base">Whatsapp-Support</span>
-              </li>
-            </ul>
-            <p className="text-xl sm:text-2xl font-bold text-[#1a4b84] mb-4 sm:mb-6">€149 / Monat</p>
-            <a
-              href="https://calendly.com/femalecyclingcoach/30min"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-[#1a4b84] text-white py-3 px-4 rounded-full text-center hover:bg-[#4a6d58] transition duration-300 min-h-[44px] flex items-center justify-center text-sm sm:text-base"
-            >
-              Kontaktiere mich
-            </a>
-          </div>
-
-          <div className="bg-white p-6 sm:p-8 rounded-lg shadow-md flex flex-col border-2 border-[#1a4b84] md:col-span-2 xl:col-span-1">
-            <h2 className="text-lg sm:text-xl font-semibold mb-4 sm:mb-6 text-[#1a4b84]">Fortgeschrittenen-Paket</h2>
-            <ul className="mb-6 sm:mb-8 flex-grow space-y-3">
-              <li className="flex items-start">
-                <CheckCircle className="w-5 h-5 mr-3 text-[#4a6d58] flex-shrink-0 mt-0.5" />
-                <span className="text-sm sm:text-base">Individueller Trainingsplan</span>
-              </li>
-              <li className="flex items-start">
-                <CheckCircle className="w-5 h-5 mr-3 text-[#4a6d58] flex-shrink-0 mt-0.5" />
-                <span className="text-sm sm:text-base">Zweiwöchentliche Video-Calls</span>
-              </li>
-              <li className="flex items-start">
-                <CheckCircle className="w-5 h-5 mr-3 text-[#4a6d58] flex-shrink-0 mt-0.5" />
-                <span className="text-sm sm:text-base">Leistungsanalyse</span>
-              </li>
-              <li className="flex items-start">
-                <CheckCircle className="w-5 h-5 mr-3 text-[#4a6d58] flex-shrink-0 mt-0.5" />
-                <span className="text-sm sm:text-base">Prioritäts-Support</span>
-              </li>
-            </ul>
-            <p className="text-xl sm:text-2xl font-bold text-[#1a4b84] mb-4 sm:mb-6">€199 / Monat</p>
-            <a
-              href="https://calendly.com/femalecyclingcoach/30min"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-[#1a4b84] text-white py-3 px-4 rounded-full text-center hover:bg-[#4a6d58] transition duration-300 min-h-[44px] flex items-center justify-center text-sm sm:text-base"
-            >
-              Kontaktiere mich
-            </a>
-          </div>
-
-          <div className="bg-white p-6 sm:p-8 rounded-lg shadow-md flex flex-col md:col-start-2 xl:col-start-auto">
-            <h2 className="text-lg sm:text-xl font-semibold mb-4 sm:mb-6 text-[#1a4b84]">Profi-Paket</h2>
-            <ul className="mb-6 sm:mb-8 flex-grow space-y-3">
-              <li className="flex items-start">
-                <CheckCircle className="w-5 h-5 mr-3 text-[#4a6d58] flex-shrink-0 mt-0.5" />
-                <span className="text-sm sm:text-base">Maßgeschneiderter Trainingsplan</span>
-              </li>
-              <li className="flex items-start">
-                <CheckCircle className="w-5 h-5 mr-3 text-[#4a6d58] flex-shrink-0 mt-0.5" />
-                <span className="text-sm sm:text-base">Wöchentliche Video-Calls</span>
-              </li>
-              <li className="flex items-start">
-                <CheckCircle className="w-5 h-5 mr-3 text-[#4a6d58] flex-shrink-0 mt-0.5" />
-                <span className="text-sm sm:text-base">Praxisnahe Ernährungstipps</span>
-              </li>
-              <li className="flex items-start">
-                <CheckCircle className="w-5 h-5 mr-3 text-[#4a6d58] flex-shrink-0 mt-0.5" />
-                <span className="text-sm sm:text-base">24/7 Support</span>
-              </li>
-            </ul>
-            <p className="text-xl sm:text-2xl font-bold text-[#1a4b84] mb-4 sm:mb-6">€249 / Monat</p>
-            <a
-              href="https://calendly.com/femalecyclingcoach/30min"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-[#1a4b84] text-white py-3 px-4 rounded-full text-center hover:bg-[#4a6d58] transition duration-300 min-h-[44px] flex items-center justify-center text-sm sm:text-base"
-            >
-              Kontaktiere mich
-            </a>
-          </div>
+    <div className="bg-white">
+      {/* HEADER */}
+      <section className="border-b border-[#191340]/10 bg-white">
+        <div className="container mx-auto px-4 pb-12 pt-28 sm:px-6 sm:pt-32 lg:px-8 lg:pb-16 lg:pt-40">
+          <span className="text-xs font-semibold uppercase tracking-[0.25em] text-[#FF5A1F]">
+            Coaching-Pakete
+          </span>
+          <h1 className="mt-4 max-w-4xl text-4xl font-black uppercase leading-[0.9] tracking-tight text-[#191340] text-balance sm:text-6xl lg:text-7xl">
+            Preise &amp; Pakete
+          </h1>
+          <p className="mt-6 max-w-2xl text-base leading-relaxed text-[#191340]/70 sm:text-lg">
+            Transparente Pakete für jedes Level. Finde das passende Coaching und starte deinen Weg zu mehr Leistung
+            auf dem Rad.
+          </p>
         </div>
-      </div>
+      </section>
+
+      {/* PRICING GRID */}
+      <section className="py-16 sm:py-20 lg:py-24">
+        <div className="container mx-auto grid max-w-6xl grid-cols-1 gap-6 px-4 sm:px-6 lg:grid-cols-3 lg:gap-8 lg:px-8">
+          {packages.map((pkg) => (
+            <div
+              key={pkg.name}
+              className={`flex flex-col rounded-2xl p-8 ${
+                pkg.featured
+                  ? "bg-[#191340] text-white ring-2 ring-[#FF5A1F]"
+                  : "bg-white text-[#191340] ring-1 ring-[#191340]/10"
+              }`}
+            >
+              {pkg.featured && (
+                <span className="mb-4 inline-flex w-fit rounded-full bg-[#FF5A1F] px-3 py-1 text-xs font-semibold uppercase tracking-wide text-white">
+                  Beliebteste Wahl
+                </span>
+              )}
+              <h2 className="text-lg font-bold uppercase tracking-tight">{pkg.name}</h2>
+              <div className="mt-6 flex items-baseline gap-1">
+                <span className="text-5xl font-black tracking-tight">€{pkg.price}</span>
+                <span className={pkg.featured ? "text-white/60" : "text-[#191340]/50"}>/ Monat</span>
+              </div>
+              <ul className="mt-8 flex-grow space-y-4">
+                {pkg.features.map((feature) => (
+                  <li key={feature} className="flex items-start gap-3">
+                    <Check className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#FF5A1F]" strokeWidth={2.5} />
+                    <span className="text-sm sm:text-base">{feature}</span>
+                  </li>
+                ))}
+              </ul>
+              <a
+                href="https://calendly.com/femalecyclingcoach/30min"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`mt-8 inline-flex min-h-[44px] items-center justify-center rounded-full px-6 py-3 text-sm font-semibold transition-colors duration-200 ${
+                  pkg.featured
+                    ? "bg-white text-[#191340] hover:bg-[#FF5A1F] hover:text-white"
+                    : "bg-[#191340] text-white hover:bg-[#FF5A1F]"
+                }`}
+              >
+                Kontaktiere mich
+              </a>
+            </div>
+          ))}
+        </div>
+
+        <div className="container mx-auto mt-12 max-w-6xl px-4 sm:px-6 lg:px-8">
+          <p className="text-sm text-[#191340]/60">
+            Du bist dir nicht sicher, welches Paket passt?{" "}
+            <Link href="/kontakt" className="font-semibold text-[#191340] underline decoration-[#FF5A1F] underline-offset-4 hover:text-[#FF5A1F]">
+              Lass uns in einem kostenlosen Erstgespräch klären.
+            </Link>
+          </p>
+        </div>
+      </section>
     </div>
   )
 }
