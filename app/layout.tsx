@@ -19,9 +19,32 @@ export const viewport: Viewport = {
 }
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.femalecyclingcoach.com"),
   title: "Female Cycling Coach",
   description: "Professionelles Coaching und maßgeschneiderte Trainingspläne für Radfahrerinnen",
   generator: "v0.app",
+  openGraph: {
+    type: "website",
+    locale: "de_DE",
+    url: "https://www.femalecyclingcoach.com",
+    siteName: "Female Cycling Coach",
+    title: "Female Cycling Coach",
+    description: "Professionelles Coaching und maßgeschneiderte Trainingspläne für Radfahrerinnen",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1008,
+        height: 990,
+        alt: "Female Cycling Coach – developed by Jaqueline Lischka",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Female Cycling Coach",
+    description: "Professionelles Coaching und maßgeschneiderte Trainingspläne für Radfahrerinnen",
+    images: ["/og-image.png"],
+  },
 }
 
 export default function RootLayout({
