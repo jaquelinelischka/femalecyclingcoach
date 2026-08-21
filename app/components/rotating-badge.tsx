@@ -15,11 +15,14 @@ export function RotatingBadge({
 }: RotatingBadgeProps) {
   return (
     <div
-      className={`relative flex items-center justify-center rounded-full bg-[#FF5A1F] text-[#191340] shadow-xl ${className}`}
+      className={`group relative flex items-center justify-center rounded-full bg-[#FF5A1F] text-[#191340] shadow-xl ${className}`}
       aria-hidden="true"
     >
-      {/* Rotierender gebogener Text */}
-      <svg viewBox="0 0 200 200" className="absolute inset-0 h-full w-full animate-[spin_14s_linear_infinite]">
+      {/* Gebogener Text – dreht sich beim Hover */}
+      <svg
+        viewBox="0 0 200 200"
+        className="absolute inset-0 h-full w-full animate-[spin_10s_linear_infinite] [animation-play-state:paused] transition-transform duration-500 group-hover:scale-105 group-hover:[animation-play-state:running]"
+      >
         <defs>
           <path id="badge-curve" d="M 100,100 m -74,0 a 74,74 0 1,1 148,0 a 74,74 0 1,1 -148,0" fill="none" />
         </defs>

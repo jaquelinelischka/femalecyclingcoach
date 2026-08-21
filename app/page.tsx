@@ -50,12 +50,12 @@ export default function Home() {
             </h2>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 max-w-7xl mx-auto">
               <div className="order-2 lg:order-1">
-                <div className="aspect-[3/4] sm:aspect-[4/5] lg:aspect-[3/4] w-full max-w-sm sm:max-w-md mx-auto lg:max-w-none">
+                <div className="relative aspect-[3/4] sm:aspect-[4/5] lg:aspect-[3/4] w-full max-w-sm sm:max-w-md mx-auto lg:max-w-none">
                   <Image
-                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Frauen%20Coach%20Jaqueline%20Lischka.jpg-unfZ4ZPN46IZIoQNXhCCzsRahJrPHD.jpeg"
-                    alt="Jaqueline Lischka - Professionelle Radsporttrainerin beim Training in Mallorca"
+                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_8271.JPG-BqvMIphgbjmD56tODPjQ7BZstYGIOe.jpeg"
+                    alt="Jaqueline Lischka - Radrennfahrerin in Renn-Position auf dem Rennrad"
                     width={800}
-                    height={800}
+                    height={1067}
                     className="rounded-lg shadow-lg object-cover w-full h-full"
                     priority
                     sizes="(max-width: 640px) 90vw, (max-width: 1024px) 50vw, 40vw"
@@ -63,6 +63,15 @@ export default function Home() {
                       transform: "translateZ(0)",
                       backfaceVisibility: "hidden",
                     }}
+                  />
+                  {/* Brand-Logo, leicht über den unteren Bildrand ragend */}
+                  <Image
+                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Bildschirmfoto%202026-08-20%20um%2020.26.16-aN5TUYiccYUI5yKWWvSygryCcqEFhO.png"
+                    alt="Female Cycling Coach — developed by Jaqueline Lischka"
+                    width={320}
+                    height={320}
+                    className="absolute -bottom-6 -right-4 w-28 sm:w-36 lg:w-44 h-auto rounded-xl shadow-2xl ring-4 ring-white rotate-3"
+                    sizes="(max-width: 640px) 30vw, 176px"
                   />
                 </div>
               </div>

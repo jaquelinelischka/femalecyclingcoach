@@ -53,10 +53,9 @@ export default function RootLayout({
                 priority
                 className="h-7 sm:h-8 lg:h-9 w-auto"
               />
-              <span className="hidden lg:inline text-lg font-black uppercase tracking-tight leading-none">
+              <span className="text-sm sm:text-base lg:text-lg font-black uppercase tracking-tight leading-none">
                 Female Cycling Coach
               </span>
-              <span className="lg:hidden text-lg font-black uppercase tracking-tight leading-none">FCC</span>
             </Link>
             <Navigation />
           </div>
