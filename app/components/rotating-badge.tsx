@@ -1,3 +1,7 @@
+"use client"
+
+import { useState } from "react"
+
 interface RotatingBadgeProps {
   text?: string
   className?: string
@@ -12,15 +16,22 @@ export function RotatingBadge({
   text = "DEVELOPED & ENGINEERED FOR STRONG WOMEN · BY FEMALE CYCLING COACH · ",
   className = "",
 }: RotatingBadgeProps) {
+  const [hovered, setHovered] = useState(false)
+
   return (
     <div
-      className={`group relative flex items-center justify-center rounded-full bg-[#FF5A1F] text-[#191340] shadow-xl ${className}`}
+      className={`pointer-events-auto relative flex items-center justify-center rounded-full bg-[#FF5A1F] text-[#191340] shadow-xl transition-transform duration-500 ${
+        hovered ? "scale-105" : ""
+      } ${className}`}
       aria-label="Developed & engineered for strong women by Female Cycling Coach"
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
     >
       {/* Gebogener Text – dreht sich beim Hover */}
       <svg
         viewBox="0 0 200 200"
-        className="absolute inset-0 h-full w-full animate-[spin_12s_linear_infinite] [animation-play-state:paused] transition-transform duration-500 group-hover:scale-105 group-hover:[animation-play-state:running]"
+        className="absolute inset-0 h-full w-full animate-[spin_12s_linear_infinite]"
+        style={{ animationPlayState: hovered ? "running" : "paused" }}
         aria-hidden="true"
       >
         <defs>
@@ -41,7 +52,7 @@ export function RotatingBadge({
         strokeWidth={2}
         strokeLinecap="round"
         strokeLinejoin="round"
-        className="h-8 w-8 transition-transform duration-500 group-hover:rotate-45"
+        className={`h-8 w-8 transition-transform duration-500 ${hovered ? "rotate-45" : ""}`}
         aria-hidden="true"
       >
         <path d="M7 17 17 7" />
