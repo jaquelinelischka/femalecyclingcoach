@@ -1,6 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
-import { BikeIcon, User, Calendar, Mail, Instagram } from "lucide-react"
+import { BikeIcon, User, Calendar, Mail } from "lucide-react"
 import { Hero } from "./components/hero"
 
 export default function Home() {
@@ -137,31 +137,6 @@ export default function Home() {
                 <Calendar className="w-4 h-4 sm:w-5 sm:h-5 mr-2 flex-shrink-0" />
                 <span className="text-sm sm:text-base">Termin buchen</span>
               </Link>
-            </div>
-          </div>
-        </section>
-
-        {/* Footer für die Home-Seite */}
-        <section className="py-4 sm:py-6 bg-gray-100 text-gray-700 border-t border-gray-200">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div className="flex justify-center mb-2 sm:mb-3">
-              <a
-                href="https://www.instagram.com/ridewithjacky?igsh=MXJuZWg2MWRjc3NuMw%3D%3D&utm_source=qr"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-500 hover:text-[#191340] transition-colors p-2 min-h-[44px] min-w-[44px] flex items-center justify-center touch-manipulation"
-                aria-label="Folge mir auf Instagram"
-              >
-                <Instagram className="w-5 h-5 sm:w-6 sm:h-6" />
-              </a>
-            </div>
-            <p className="text-xs sm:text-sm">
-              &copy; {new Date().getFullYear()} Female Cycling Coach. Alle Rechte vorbehalten.
-            </p>
-            <div className="mt-2 sm:mt-3 text-xs text-gray-500">
-              <p className="break-words px-2">
-                Jaqueline Lischka | Mühlgrundgasse 26, 1220 Wien | femalecyclingcoach@gmail.com
-              </p>
             </div>
           </div>
         </section>
