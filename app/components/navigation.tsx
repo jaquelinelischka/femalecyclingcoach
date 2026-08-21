@@ -1,231 +1,138 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { ChevronDown, Menu, X } from "lucide-react"
+import { Menu, X, ArrowUpRight } from "lucide-react"
 
 interface NavItem {
   label: string
   href: string
-  children?: { label: string; href: string }[]
 }
 
 export function Navigation() {
-  const [openDropdown, setOpenDropdown] = useState<string | null>(null)
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const dropdownRef = useRef<HTMLDivElement>(null)
-  const mobileMenuRef = useRef<HTMLDivElement>(null)
+  const [menuOpen, setMenuOpen] = useState(false)
   const pathname = usePathname()
 
   const isActive = (href: string) => (href === "/" ? pathname === "/" : pathname.startsWith(href))
-  const isGroupActive = (children?: { href: string }[]) => children?.some((c) => isActive(c.href)) ?? false
 
-  // Schließe Dropdown bei Klick außerhalb
+  // Menü bei Routenwechsel schließen
   useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setOpenDropdown(null)
-      }
-      if (mobileMenuRef.current && !mobileMenuRef.current.contains(event.target as Node)) {
-        setMobileMenuOpen(false)
-      }
-    }
+    setMenuOpen(false)
+  }, [pathname])
 
-    document.addEventListener("mousedown", handleClickOutside)
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside)
-    }
-  }, [])
-
-  // Schließe mobile Menü bei Größenänderung des Fensters
+  // Scroll sperren, wenn das Menü offen ist + Escape zum Schließen
   useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 768) {
-        setMobileMenuOpen(false)
-      }
+    document.body.style.overflow = menuOpen ? "hidden" : ""
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMenuOpen(false)
     }
-
-    window.addEventListener("resize", handleResize)
+    window.addEventListener("keydown", onKey)
     return () => {
-      window.removeEventListener("resize", handleResize)
+      document.body.style.overflow = ""
+      window.removeEventListener("keydown", onKey)
     }
-  }, [])
+  }, [menuOpen])
 
   const navItems: NavItem[] = [
     { label: "Home", href: "/" },
     { label: "About Jaqueline", href: "/about-jaqueline" },
-    {
-      label: "Angebote",
-      href: "#",
-      children: [
-        { label: "Leistungen", href: "/leistungen" },
-        { label: "Preise", href: "/preise" },
-        { label: "FAQ", href: "/faq" },
-      ],
-    },
+    { label: "Leistungen", href: "/leistungen" },
+    { label: "Preise", href: "/preise" },
+    { label: "FAQ", href: "/faq" },
     { label: "Stories", href: "/stories" },
     { label: "Kontakt", href: "/kontakt" },
   ]
 
   return (
     <>
-      {/* Desktop Navigation */}
-      <nav className="h-full hidden md:block">
-        <ul className="flex h-full items-center gap-6 lg:gap-9">
-          {navItems.map((item) => {
-            const groupActive = isGroupActive(item.children)
-            const active = item.children ? groupActive : isActive(item.href)
-            return (
-              <li
-                key={item.label}
-                className="flex items-center relative"
-                onMouseEnter={() => item.children && setOpenDropdown(item.label)}
-                onMouseLeave={() => setOpenDropdown(null)}
-              >
-                {item.children ? (
-                  <div ref={dropdownRef} className="flex items-center">
-                    <button
-                      className={`flex items-center rounded-full text-sm lg:text-[15px] transition-colors duration-200 touch-manipulation ${
-                        active
-                          ? "border border-[#191340] px-4 py-1.5 font-semibold text-[#191340]"
-                          : "px-1 py-1.5 font-medium text-[#191340]/80 hover:text-[#191340]"
-                      }`}
-                      onClick={() => setOpenDropdown(openDropdown === item.label ? null : item.label)}
-                      aria-expanded={openDropdown === item.label}
-                      aria-haspopup="true"
-                      type="button"
-                    >
-                      {item.label}
-                      <ChevronDown className="ml-1 h-3.5 w-3.5" />
-                    </button>
-                    {openDropdown === item.label && (
-                      <div
-                        className="absolute top-full right-0 mt-2 w-48 rounded-xl bg-white shadow-lg ring-1 ring-black/5 z-50"
-                        role="menu"
-                        aria-orientation="vertical"
-                      >
-                        <ul className="py-2">
-                          {item.children.map((child) => (
-                            <li key={child.label}>
-                              <Link
-                                href={child.href}
-                                className={`block px-4 py-2.5 text-sm touch-manipulation ${
-                                  isActive(child.href)
-                                    ? "font-semibold text-[#191340]"
-                                    : "text-[#191340]/80 hover:text-[#191340] hover:bg-gray-50"
-                                }`}
-                                role="menuitem"
-                                onClick={() => setOpenDropdown(null)}
-                              >
-                                {child.label}
-                              </Link>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
-                  </div>
-                ) : (
+      {/* Burger-Button */}
+      <button
+        onClick={() => setMenuOpen(true)}
+        className="flex items-center gap-2 text-[#191340] group touch-manipulation min-h-[44px]"
+        aria-label="Menü öffnen"
+        aria-expanded={menuOpen}
+        type="button"
+      >
+        <span className="hidden sm:inline text-sm font-semibold uppercase tracking-[0.15em]">Menü</span>
+        <span className="flex h-10 w-10 items-center justify-center rounded-full border border-[#191340] transition-colors duration-200 group-hover:bg-[#191340] group-hover:text-white">
+          <Menu size={18} />
+        </span>
+      </button>
+
+      {/* Fullscreen Overlay-Menü */}
+      <div
+        className={`fixed inset-0 z-[60] bg-[#191340] text-white transition-all duration-500 ${
+          menuOpen ? "opacity-100 visible" : "pointer-events-none invisible opacity-0"
+        }`}
+        role="dialog"
+        aria-modal="true"
+        aria-hidden={!menuOpen}
+      >
+        {/* Top bar innerhalb des Overlays */}
+        <div className="container mx-auto flex h-16 items-center justify-between px-4 sm:h-18 sm:px-6 lg:h-20 lg:px-8">
+          <span className="text-sm font-black uppercase tracking-tight sm:text-base lg:text-lg">
+            Female Cycling Coach
+          </span>
+          <button
+            onClick={() => setMenuOpen(false)}
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-white/40 transition-colors duration-200 hover:bg-white hover:text-[#191340] touch-manipulation"
+            aria-label="Menü schließen"
+            type="button"
+          >
+            <X size={18} />
+          </button>
+        </div>
+
+        {/* Menülinks */}
+        <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <ul className="mt-4 flex flex-col sm:mt-8">
+            {navItems.map((item, i) => {
+              const active = isActive(item.href)
+              return (
+                <li key={item.href} className="border-b border-white/10">
                   <Link
                     href={item.href}
                     aria-current={active ? "page" : undefined}
-                    className={`rounded-full text-sm lg:text-[15px] transition-colors duration-200 touch-manipulation ${
-                      active
-                        ? "border border-[#191340] px-4 py-1.5 font-semibold text-[#191340]"
-                        : "px-1 py-1.5 font-medium text-[#191340]/80 hover:text-[#191340]"
+                    className={`group flex items-center justify-between py-3 sm:py-4 lg:py-5 transition-colors duration-200 ${
+                      active ? "text-[#FF5A1F]" : "text-white hover:text-[#FF5A1F]"
                     }`}
+                    style={{
+                      transitionDelay: menuOpen ? `${i * 40 + 100}ms` : "0ms",
+                    }}
                   >
-                    {item.label}
-                  </Link>
-                )}
-              </li>
-            )
-          })}
-        </ul>
-      </nav>
-
-      {/* Mobile Navigation */}
-      <div className="md:hidden flex items-center">
-        <button
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="text-[#191340] p-2 rounded-md hover:bg-gray-100 transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center touch-manipulation"
-          aria-expanded={mobileMenuOpen}
-          aria-label="Toggle menu"
-        >
-          {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
-
-        {/* Mobile Menu */}
-        {mobileMenuOpen && (
-          <>
-            {/* Backdrop */}
-            <div 
-              className="fixed inset-0 bg-black/20 z-40"
-              onClick={() => setMobileMenuOpen(false)}
-              aria-hidden="true"
-            />
-            <div
-              ref={mobileMenuRef}
-              className="fixed top-16 left-0 right-0 bg-white shadow-lg z-50 border-t border-gray-200 max-h-[calc(100vh-4rem)] max-h-[calc(100dvh-4rem)] overflow-y-auto mobile-nav overscroll-contain"
-              style={{
-                WebkitOverflowScrolling: "touch",
-              }}
-            >
-            <ul className="py-2">
-              {navItems.map((item) => (
-                <li key={item.label} className="px-4 sm:px-6">
-                  {item.children ? (
-                    <div>
-                      <button
-                        onClick={() => setOpenDropdown(openDropdown === item.label ? null : item.label)}
-                        className="flex items-center justify-between w-full py-4 text-[#191340] text-base sm:text-lg min-h-[44px] touch-manipulation"
-                        aria-expanded={openDropdown === item.label}
-                      >
+                    <span className="flex items-baseline gap-3 sm:gap-4">
+                      <span className="text-xs font-mono text-white/40 tabular-nums">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                      <span className="text-3xl font-black uppercase leading-none tracking-tight sm:text-5xl lg:text-6xl">
                         {item.label}
-                        <ChevronDown
-                          className={`h-5 w-5 transition-transform ${
-                            openDropdown === item.label ? "transform rotate-180" : ""
-                          }`}
-                        />
-                      </button>
-                      {openDropdown === item.label && (
-                        <ul className="pl-4 pb-2">
-                          {item.children.map((child) => (
-                            <li key={child.label}>
-                              <Link
-                                href={child.href}
-                                className="block py-3 text-[#191340] text-base min-h-[44px] flex items-center touch-manipulation"
-                                onClick={() => {
-                                  setOpenDropdown(null)
-                                  setMobileMenuOpen(false)
-                                }}
-                              >
-                                {child.label}
-                              </Link>
-                            </li>
-                          ))}
-                        </ul>
-                      )}
-                    </div>
-                  ) : (
-                    <Link
-                      href={item.href}
-                      aria-current={isActive(item.href) ? "page" : undefined}
-                      className={`block py-4 text-base sm:text-lg min-h-[44px] flex items-center touch-manipulation ${
-                        isActive(item.href) ? "font-bold text-[#191340]" : "text-[#191340]/80"
-                      }`}
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      {item.label}
-                    </Link>
-                  )}
+                      </span>
+                    </span>
+                    <ArrowUpRight
+                      className="h-6 w-6 shrink-0 -translate-x-2 opacity-0 transition-all duration-200 group-hover:translate-x-0 group-hover:opacity-100 sm:h-8 sm:w-8"
+                      aria-hidden="true"
+                    />
+                  </Link>
                 </li>
-              ))}
-            </ul>
+              )
+            })}
+          </ul>
+
+          <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-white/60 sm:mt-12">
+            <a
+              href="https://www.instagram.com/ridewithjacky?igsh=MXJuZWg2MWRjc3NuMw%3D%3D&utm_source=qr"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white transition-colors"
+            >
+              Instagram
+            </a>
+            <a href="mailto:femalecyclingcoach@gmail.com" className="hover:text-white transition-colors">
+              femalecyclingcoach@gmail.com
+            </a>
           </div>
-          </>
-        )}
+        </nav>
       </div>
     </>
   )

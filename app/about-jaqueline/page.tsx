@@ -1,6 +1,8 @@
 import Image from "next/image"
+import Link from "next/link"
 import type { Metadata } from "next"
-import { ScrollRevealVideo } from "../components/ScrollRevealVideo"
+import { AboutGallery } from "../components/about-gallery"
+import { AboutVideoSection } from "../components/about-video-section"
 
 export const metadata: Metadata = {
   title: "About Jaqueline Lischka - Professional Female Cycling Coach Austria",
@@ -14,9 +16,9 @@ export const metadata: Metadata = {
       "Professionelle Radsport-Trainerin mit internationaler Wettkampferfahrung. Spezialisiert auf Frauenradsport und individuelles Coaching.",
     images: [
       {
-        url: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Frauen%20Coach%20Jaqueline%20Lischka.jpg-unfZ4ZPN46IZIoQNXhCCzsRahJrPHD.jpeg",
+        url: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_8265.JPG-SPMEGMZpKOwEI8NhNwLi320jrv17zN.jpeg",
         width: 800,
-        height: 800,
+        height: 1200,
         alt: "Jaqueline Lischka - Professional Female Cycling Coach Austria",
       },
     ],
@@ -27,7 +29,6 @@ export const metadata: Metadata = {
   },
 }
 
-// Structured Data for SEO
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "Person",
@@ -37,7 +38,7 @@ const structuredData = {
     "Professional female cycling coach specializing in women's cycling training and performance optimization",
   url: "https://femalecycling.at/about-jaqueline",
   image:
-    "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Frauen%20Coach%20Jaqueline%20Lischka.jpg-unfZ4ZPN46IZIoQNXhCCzsRahJrPHD.jpeg",
+    "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_8265.JPG-SPMEGMZpKOwEI8NhNwLi320jrv17zN.jpeg",
   address: {
     "@type": "PostalAddress",
     streetAddress: "Mühlgrundgasse 26",
@@ -62,186 +63,206 @@ const structuredData = {
   ],
 }
 
+const facts = [
+  { value: "Top-10", label: "Nationale Zeitfahr-Meisterschaften" },
+  { value: "2022", label: "Vollständiger Fokus auf Radsport" },
+  { value: "ÖM", label: "Medaillen in Triathlon & Duathlon" },
+  { value: "1:1", label: "Individuelles Female Coaching" },
+]
+
+const sections = [
+  {
+    title: "Deine Female Cycling Coach aus Wien",
+    body: (
+      <>
+        Mein Name ist <strong>Jaqueline Lischka</strong> – professionelle Radsport-Trainerin, aktive Wettkampfathletin
+        und deine Partnerin auf dem Weg zu deinen sportlichen Zielen. Mit nationaler und internationaler
+        Wettkampferfahrung bringe ich als aktive Athletin eine einzigartige Perspektive ins{" "}
+        <strong>Female Cycling Coaching</strong> ein, denn ich weiß genau, was es bedeutet, mit dem weiblichen Körper zu
+        trainieren und zu performen.
+      </>
+    ),
+  },
+  {
+    title: "Qualifikationen und Expertise im Radsport",
+    body: (
+      <>
+        Meine Expertise als <strong>Cycling Coach</strong> basiert auf fundierten Ausbildungen in Radsport,
+        Trainingssteuerung, Sporternährung und Mental Coaching. Ich betreue Athletinnen vom Anfänger- bis zum
+        ambitionierten Leistungssport-Level und verstehe durch meine eigene Wettkampfpraxis die spezifischen
+        Herausforderungen in Vorbereitung und Wettkampfphase.
+      </>
+    ),
+  },
+  {
+    title: "Sportliche Erfolge und Wettkampferfahrung",
+    body: (
+      <>
+        Meine sportliche Laufbahn begann erfolgreich im <strong>Laufsport</strong> mit zahlreichen nationalen Siegen,
+        führte mich über den <strong>Triathlon</strong> zum Radsport, dem ich mich seit 2022 vollständig widme.
+        Höhepunkte meiner Karriere sind eine{" "}
+        <strong>Top-10 Platzierung bei den nationalen Zeitfahr-Meisterschaften</strong> sowie mehrere{" "}
+        <strong>ÖM-Medaillen in Triathlon und Duathlon</strong>.
+      </>
+    ),
+  },
+  {
+    title: "Zyklusgesteuertes Training für Frauen",
+    body: (
+      <>
+        Als <strong>Radleiterin und Ernährungscoach</strong> biete ich ganzheitliche Betreuung, die modernste
+        Trainingstechniken – insbesondere <strong>zyklusgesteuertes Training</strong> – mit individueller
+        Athletenentwicklung verbindet. Diese Kombination aus praktischer Wettkampferfahrung und wissenschaftlich
+        fundiertem Fachwissen ermöglicht mir, maßgeschneiderte <strong>Radsport Training Programme</strong> zu
+        entwickeln.
+      </>
+    ),
+  },
+  {
+    title: "Dein Weg zum Radsport-Erfolg",
+    body: (
+      <>
+        Ob erste <strong>Langstreckenfahrt</strong>, <strong>Radmarathon</strong>, <strong>Ultra Bike Race</strong>{" "}
+        oder Podiumsplatz – ich begleite dich als erfahrene <strong>Performance Coach</strong> professionell bei jedem
+        Tritt in die Pedale und unterstütze dich dabei, deine Grenzen zu überwinden und deine Ziele zu erreichen.
+      </>
+    ),
+  },
+]
+
 export default function AboutJaqueline() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
-      <div className="min-h-screen py-8 sm:py-12 lg:py-16 xl:py-20 overflow-hidden">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <header className="text-center mb-6 sm:mb-8 lg:mb-12">
-            <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 lg:mb-6 text-[#191340] leading-tight px-2">
-              About Jaqueline Lischka - Professional Female Cycling Coach
+
+      {/* HERO – full-bleed */}
+      <section className="relative min-h-[85vh] w-full overflow-hidden bg-[#191340]">
+        <Image
+          src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_8265.JPG-SPMEGMZpKOwEI8NhNwLi320jrv17zN.jpeg"
+          alt="Jaqueline Lischka in dynamischer Rennposition auf dem Rennrad"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-[center_20%]"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#191340] via-[#191340]/40 to-black/30" />
+        <div className="relative z-10 flex min-h-[85vh] items-end">
+          <div className="container mx-auto px-4 pb-12 sm:px-6 sm:pb-16 lg:px-8 lg:pb-20">
+            <span className="text-xs font-semibold uppercase tracking-[0.25em] text-[#FF5A1F]">
+              About · Female Cycling Coach
+            </span>
+            <h1 className="mt-4 max-w-4xl text-4xl font-black uppercase leading-[0.9] tracking-tight text-white text-balance sm:text-6xl lg:text-8xl">
+              Jaqueline
+              <br />
+              Lischka
             </h1>
-            <p className="text-sm sm:text-base lg:text-lg text-gray-600 max-w-4xl mx-auto leading-relaxed px-2">
-              Erfahrene Radsport-Trainerin aus Wien mit internationaler Wettkampferfahrung. Spezialisiert auf
-              Frauenradsport, zyklusgesteuertes Training und individuelle Coaching-Programme.
+            <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/80 sm:text-lg">
+              Radsport-Trainerin aus Wien mit internationaler Wettkampferfahrung. Spezialisiert auf Frauenradsport,
+              zyklusgesteuertes Training und individuelle Coaching-Programme.
             </p>
-          </header>
+          </div>
+        </div>
+      </section>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 max-w-7xl mx-auto">
-            <div className="order-2 lg:order-1">
-              <div className="aspect-[3/4] sm:aspect-[4/5] lg:aspect-square w-full max-w-sm sm:max-w-md lg:max-w-lg mx-auto lg:max-w-none">
-                <Image
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Frauen%20Coach%20Jaqueline%20Lischka.jpg-unfZ4ZPN46IZIoQNXhCCzsRahJrPHD.jpeg"
-                  alt="Jaqueline Lischka - Professional Female Cycling Coach Austria training in Mallorca"
-                  width={800}
-                  height={800}
-                  className="rounded-lg shadow-lg object-cover w-full h-full"
-                  priority
-                  sizes="(max-width: 640px) 90vw, (max-width: 1024px) 50vw, 40vw"
-                  style={{
-                    transform: "translateZ(0)",
-                    backfaceVisibility: "hidden",
-                  }}
-                />
+      {/* FACTS */}
+      <section className="border-b border-[#191340]/10 bg-white">
+        <div className="container mx-auto grid grid-cols-2 gap-px overflow-hidden px-4 sm:px-6 lg:grid-cols-4 lg:px-8">
+          {facts.map((f) => (
+            <div key={f.label} className="py-8 lg:py-12">
+              <div className="text-3xl font-black uppercase tracking-tight text-[#FF5A1F] sm:text-4xl lg:text-5xl">
+                {f.value}
               </div>
+              <div className="mt-2 text-xs uppercase tracking-wide text-[#191340]/60 sm:text-sm">{f.label}</div>
+            </div>
+          ))}
+        </div>
+      </section>
 
-              {/* Video Section mit 300px Breite und optimiertem Abstand */}
-              <ScrollRevealVideo>
-                <div className="mt-8 sm:mt-12 lg:mt-16 xl:mt-20 pt-6 sm:pt-8 lg:pt-12 flex justify-center">
-                  <div className="relative w-[280px] sm:w-[300px] video-container">
-                    <div className="relative overflow-hidden rounded-lg shadow-xl bg-gradient-to-r from-[#191340] to-[#4a6d58] p-1">
-                      <div className="relative overflow-hidden rounded-lg">
-                        <video
-                          className="w-full h-auto object-cover transform hover:scale-105 transition-transform duration-700 ease-in-out"
-                          autoPlay
-                          muted
-                          loop
-                          playsInline
-                          controls
-                          poster="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Frauen%20Coach%20Jaqueline%20Lischka.jpg-unfZ4ZPN46IZIoQNXhCCzsRahJrPHD.jpeg"
-                          style={{
-                            transform: "translateZ(0)",
-                            backfaceVisibility: "hidden",
-                          }}
-                        >
-                          <source src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/PXL_20250620_152554243.TS-5CqPjKwdY2DYj5lfWjgNLRxyEReZub.mp4" type="video/mp4" />
-                          Ihr Browser unterstützt das Video-Element nicht.
-                        </video>
-
-                        {/* Overlay-Effekt */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-[#191340]/20 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-
-                        {/* Video-Beschriftung */}
-                        <div className="absolute bottom-2 left-2 right-2 text-white opacity-0 hover:opacity-100 transition-opacity duration-500">
-                          <p className="text-xs font-medium drop-shadow-lg">Jaqueline in Aktion</p>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Dekorative Elemente */}
-                    <div className="absolute -top-1 -left-1 w-3 h-3 bg-[#4a6d58] rounded-full opacity-60 animate-pulse" />
-                    <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-[#191340] rounded-full opacity-40 animate-pulse delay-1000" />
-                  </div>
+      {/* STORY – editorial zweispaltig */}
+      <section className="bg-white py-16 sm:py-24 lg:py-32">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
+            <div className="lg:col-span-4">
+              <div className="lg:sticky lg:top-28">
+                <span className="text-xs font-semibold uppercase tracking-[0.25em] text-[#FF5A1F]">Meine Story</span>
+                <h2 className="mt-3 text-3xl font-black uppercase leading-[0.95] tracking-tight text-[#191340] text-balance sm:text-4xl lg:text-5xl">
+                  Vom Laufsport aufs Rennrad
+                </h2>
+                <div className="relative mt-8 hidden aspect-[3/4] overflow-hidden rounded-2xl lg:block">
+                  <Image
+                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_8271.JPG-BqvMIphgbjmD56tODPjQ7BZstYGIOe.jpeg"
+                    alt="Jaqueline Lischka konzentriert in Renn-Position"
+                    fill
+                    sizes="30vw"
+                    className="object-cover"
+                  />
                 </div>
-              </ScrollRevealVideo>
+              </div>
             </div>
 
-            <div className="order-1 lg:order-2 bg-white/90 p-4 sm:p-6 lg:p-8 rounded-lg shadow-md flex flex-col">
-              <article className="space-y-4 sm:space-y-6 lg:space-y-8 flex-grow">
-                <section>
-                  <h2 className="text-base sm:text-lg lg:text-xl font-semibold mb-2 sm:mb-3 lg:mb-4 text-[#191340]">
-                    Deine Female Cycling Coach aus Wien
-                  </h2>
-                  <p className="text-gray-700 text-sm sm:text-base leading-relaxed">
-                    Mein Name ist <strong>Jaqueline Lischka</strong> – professionelle Radsport-Trainerin, aktive
-                    Wettkampfathletin und deine Partnerin auf dem Weg zu deinen sportlichen Zielen. Mit nationaler und
-                    internationaler Wettkampferfahrung bringe ich als aktive Athletin eine einzigartige Perspektive ins{" "}
-                    <strong>Female Cycling Coaching</strong> ein, denn ich weiß genau, was es bedeutet, mit dem
-                    weiblichen Körper zu trainieren und zu performen.
-                  </p>
-                </section>
+            <div className="lg:col-span-8">
+              <div className="space-y-10 sm:space-y-12">
+                {sections.map((s) => (
+                  <article key={s.title} className="border-b border-[#191340]/10 pb-10 last:border-0 sm:pb-12">
+                    <h3 className="text-xl font-bold text-[#191340] sm:text-2xl">{s.title}</h3>
+                    <p className="mt-3 text-base leading-relaxed text-[#191340]/70 sm:mt-4 sm:text-lg">{s.body}</p>
+                  </article>
+                ))}
 
-                <section>
-                  <h2 className="text-base sm:text-lg lg:text-xl font-semibold mb-2 sm:mb-3 lg:mb-4 text-[#191340]">
-                    Qualifikationen und Expertise im Radsport
-                  </h2>
-                  <p className="text-gray-700 text-sm sm:text-base leading-relaxed">
-                    Meine Expertise als <strong>Cycling Coach</strong> basiert auf fundierten Ausbildungen in Radsport,
-                    Trainingssteuerung, Sporternährung und Mental Coaching. Ich betreue Athletinnen vom Anfänger- bis
-                    zum ambitionierten Leistungssport-Level und verstehe durch meine eigene Wettkampfpraxis die
-                    spezifischen Herausforderungen in Vorbereitung und Wettkampfphase.
+                <div className="rounded-2xl bg-[#191340] p-6 text-white sm:p-8">
+                  <p className="text-lg font-medium leading-relaxed sm:text-xl">
+                    Gemeinsam entdecken wir dein volles Potenzial und inspirieren mehr Menschen, insbesondere Frauen, für
+                    die Faszination des <strong className="text-[#FF5A1F]">Frauenradsports</strong>.
                   </p>
-                </section>
-
-                <section>
-                  <h2 className="text-base sm:text-lg lg:text-xl font-semibold mb-2 sm:mb-3 lg:mb-4 text-[#191340]">
-                    Sportliche Erfolge und Wettkampferfahrung
-                  </h2>
-                  <p className="text-gray-700 text-sm sm:text-base leading-relaxed">
-                    Meine sportliche Laufbahn begann erfolgreich im <strong>Laufsport</strong> mit zahlreichen
-                    nationalen Siegen, führte mich über den <strong>Triathlon</strong> zum Radsport, dem ich mich seit
-                    2022 vollständig widme. Höhepunkte meiner Karriere sind eine{" "}
-                    <strong>Top-10 Platzierung bei den nationalen Zeitfahr-Meisterschaften</strong>
-                    sowie mehrere <strong>ÖM-Medaillen in Triathlon und Duathlon</strong>.
-                  </p>
-                </section>
-
-                <section>
-                  <h2 className="text-base sm:text-lg lg:text-xl font-semibold mb-2 sm:mb-3 lg:mb-4 text-[#191340]">
-                    Spezialisierung: Zyklusgesteuertes Training für Frauen
-                  </h2>
-                  <p className="text-gray-700 text-sm sm:text-base leading-relaxed">
-                    Als <strong>Radleiterin und Ernährungscoach</strong> biete ich ganzheitliche Betreuung, die
-                    modernste Trainingstechniken – insbesondere <strong>zyklusgesteuertes Training</strong> – mit
-                    individueller Athletenentwicklung verbindet. Diese Kombination aus praktischer Wettkampferfahrung
-                    und wissenschaftlich fundiertem Fachwissen ermöglicht mir, maßgeschneiderte{" "}
-                    <strong>Radsport Training Programme</strong> zu entwickeln.
-                  </p>
-                </section>
-
-                <section>
-                  <h2 className="text-base sm:text-lg lg:text-xl font-semibold mb-2 sm:mb-3 lg:mb-4 text-[#191340]">
-                    Dein Weg zum Radsport-Erfolg
-                  </h2>
-                  <p className="text-gray-700 text-sm sm:text-base leading-relaxed">
-                    Ob erste <strong>Langstreckenfahrt</strong>, <strong>Radmarathon</strong>,{" "}
-                    <strong>Ultra Bike Race</strong> oder Podiumsplatz – ich begleite dich als erfahrene{" "}
-                    <strong>Performance Coach</strong> professionell bei jedem Tritt in die Pedale und unterstütze dich
-                    dabei, deine Grenzen zu überwinden und deine Ziele zu erreichen.
-                  </p>
-                </section>
-              </article>
-
-              <footer className="mt-4 sm:mt-6 lg:mt-8 pt-4 sm:pt-6 border-t border-gray-200">
-                <p className="text-gray-700 font-medium text-sm sm:text-base leading-relaxed">
-                  Gemeinsam entdecken wir dein volles Potenzial und inspirieren mehr Menschen, insbesondere Frauen, für
-                  die Faszination des <strong>Frauenradsports</strong>!
-                </p>
-              </footer>
+                  <Link
+                    href="/kontakt"
+                    className="mt-6 inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-[#191340] transition-colors duration-200 hover:bg-[#FF5A1F] hover:text-white"
+                  >
+                    Jetzt Kontakt aufnehmen
+                  </Link>
+                </div>
+              </div>
             </div>
           </div>
-
-          {/* FAQ Schema for SEO */}
-          <section className="mt-8 sm:mt-12 lg:mt-16 xl:mt-20">
-            <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-center mb-4 sm:mb-6 lg:mb-8 text-[#191340]">
-              Häufige Fragen zu Jaqueline Lischka
-            </h2>
-            <div className="max-w-4xl mx-auto space-y-3 sm:space-y-4">
-              <details className="bg-white p-3 sm:p-4 lg:p-6 rounded-lg shadow-sm">
-                <summary className="font-semibold text-[#191340] cursor-pointer text-sm sm:text-base min-h-[44px] flex items-center touch-manipulation">
-                  Welche Qualifikationen hat Jaqueline als Cycling Coach?
-                </summary>
-                <p className="mt-2 sm:mt-3 lg:mt-4 text-gray-700 text-sm sm:text-base leading-relaxed">
-                  Jaqueline hat über 15 Jahre Wettkampferfahrung, Ausbildungen im Bereich Sporternährung und allgemeine
-                  Trainingslehre. Sie ist mental Coach, hat langjährige Erfahrung als Beraterin in der Disziplin
-                  Sporternährung für Frauen und ist Rad Coach bei zahlreichen Rad Camps und Übungskursen.
-                </p>
-              </details>
-
-              <details className="bg-white p-3 sm:p-4 lg:p-6 rounded-lg shadow-sm">
-                <summary className="font-semibold text-[#191340] cursor-pointer text-sm sm:text-base min-h-[44px] flex items-center touch-manipulation">
-                  Was ist zyklusgesteuertes Training?
-                </summary>
-                <p className="mt-2 sm:mt-3 lg:mt-4 text-gray-700 text-sm sm:text-base leading-relaxed">
-                  Zyklusgesteuertes Training berücksichtigt den weiblichen Menstruationszyklus und passt die
-                  Trainingsintensität entsprechend den hormonellen Schwankungen an für optimale Leistungsentwicklung.
-                </p>
-              </details>
-            </div>
-          </section>
         </div>
-      </div>
+      </section>
+
+      {/* VIDEO-SEKTION mit Hintergrundvideo */}
+      <AboutVideoSection />
+
+      {/* GALERIE mit Hover-Zoom */}
+      <AboutGallery />
+
+      {/* FAQ */}
+      <section className="bg-white pb-16 sm:pb-24 lg:pb-32">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="mb-6 text-2xl font-black uppercase tracking-tight text-[#191340] sm:mb-8 sm:text-3xl">
+            Häufige Fragen
+          </h2>
+          <div className="mx-auto max-w-4xl space-y-3 sm:space-y-4">
+            <details className="rounded-xl border border-[#191340]/10 bg-white p-4 sm:p-6">
+              <summary className="flex min-h-[44px] cursor-pointer items-center font-semibold text-[#191340]">
+                Welche Qualifikationen hat Jaqueline als Cycling Coach?
+              </summary>
+              <p className="mt-3 leading-relaxed text-[#191340]/70">
+                Jaqueline hat über 15 Jahre Wettkampferfahrung, Ausbildungen im Bereich Sporternährung und allgemeine
+                Trainingslehre. Sie ist Mental Coach, hat langjährige Erfahrung als Beraterin in der Disziplin
+                Sporternährung für Frauen und ist Rad Coach bei zahlreichen Rad Camps und Übungskursen.
+              </p>
+            </details>
+
+            <details className="rounded-xl border border-[#191340]/10 bg-white p-4 sm:p-6">
+              <summary className="flex min-h-[44px] cursor-pointer items-center font-semibold text-[#191340]">
+                Was ist zyklusgesteuertes Training?
+              </summary>
+              <p className="mt-3 leading-relaxed text-[#191340]/70">
+                Zyklusgesteuertes Training berücksichtigt den weiblichen Menstruationszyklus und passt die
+                Trainingsintensität entsprechend den hormonellen Schwankungen an für optimale Leistungsentwicklung.
+              </p>
+            </details>
+          </div>
+        </div>
+      </section>
     </>
   )
 }
